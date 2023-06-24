@@ -1,6 +1,15 @@
+import Header from '@/components/Header'
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
+import css from '../styles/index.module.css'
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <>
+      <Header />
+      <div className={`${css.main} container mx-auto p-4`}>
+        <Component {...pageProps} />
+      </div>
+    </>
+  )
 }
