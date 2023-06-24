@@ -2,6 +2,9 @@ import { FC, useEffect } from 'react'
 import { AiFillTwitterCircle } from 'react-icons/ai'
 import { themeChange } from 'theme-change'
 import Link from 'next/link'
+import rep from '@/libs/images/rep.jpg'
+import Image from 'next/image'
+
 const Header: FC = () => {
   useEffect(() => {
     themeChange(false)
@@ -80,9 +83,15 @@ const Header: FC = () => {
             </li>
           </ul>
         </div>
-        <a className='btn-ghost btn text-xl normal-case'>
+        <Link href='/' className='btn-ghost btn text-xl normal-case'>
+          <Image
+            src={rep}
+            alt=''
+            width='50'
+            style={{ marginRight: '5px', borderRadius: '50%' }}
+          />
           {"Maaaashi's Website"}
-        </a>
+        </Link>
       </div>
       <div className='navbar-end gap-4 md:inline-flex'>
         <div className='hidden gap-4 md:inline-flex'>
