@@ -1,0 +1,30 @@
+import Image from 'next/image'
+import React, { FC } from 'react'
+import rep from '@/libs/images/rep.jpg'
+import { icons } from '@/libs/images'
+
+interface Props {
+  tags: { name: string; versions: any[] }[]
+}
+
+const Tags: FC<Props> = ({ tags }) => {
+  return (
+    <div className='avatar-group justify-center -space-x-6'>
+      {tags.map((tag, index) => {
+        const icon = icons[tag.name]
+        if (icon) {
+          return (
+            <div key={index} className='avatar'>
+              <div className='w-12 rounded-full ring ring-primary ring-offset-4 ring-offset-base-100'>
+                <Image src={icon} alt={tag.name} className='bg-white' />
+              </div>
+            </div>
+          )
+        }
+        return <></>
+      })}
+    </div>
+  )
+}
+
+export default Tags

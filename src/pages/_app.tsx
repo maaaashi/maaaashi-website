@@ -7,8 +7,10 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Header />
-      <div className={`${css.main} container mx-auto p-4`}>
-        <Component {...pageProps} />
+      <div className={`${css.main} container mx-auto`}>
+        <div className='h-full bg-base-200 p-5'>
+          <Component {...pageProps} />
+        </div>
       </div>
     </>
   )
