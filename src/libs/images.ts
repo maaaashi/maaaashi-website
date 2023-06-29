@@ -64,7 +64,6 @@ export const icons: { [key in string]: any } = {
   aws: aws,
   ec2: ec2,
   stepFunctions: stepFunctions,
-  openAI: openAI,
   azure: azure,
   deepl: deepl,
   apollo: apollo,
