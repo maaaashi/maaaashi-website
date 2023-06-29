@@ -76,14 +76,14 @@ const Header: FC = () => {
               <Link href='/qiita'>Qiita</Link>
             </li>
             <li>
-              <Link href='/works'>Works</Link>
+              <Link href='/mini-project'>Mini Project</Link>
             </li>
             <li>
               <a>Theme</a>
             </li>
           </ul>
         </div>
-        <Link href='/' className='btn-ghost btn text-xl normal-case'>
+        <h1 className='flex items-center text-xl font-bold normal-case'>
           <Image
             src={rep}
             alt=''
@@ -91,10 +91,10 @@ const Header: FC = () => {
             style={{ marginRight: '5px', borderRadius: '50%' }}
           />
           {"Maaaashi's Website"}
-        </Link>
+        </h1>
       </div>
       <div className='navbar-end gap-4 md:inline-flex'>
-        <div className='hidden gap-4 md:inline-flex'>
+        <div className='hidden gap-4 lg:inline-flex'>
           <Link href='/' className='btn-primary btn'>
             Home
           </Link>
@@ -104,8 +104,8 @@ const Header: FC = () => {
           <Link href='/qiita' className='btn-primary btn'>
             Qiita
           </Link>
-          <Link href='/works' className='btn-primary btn'>
-            Works
+          <Link href='/mini-project' className='btn-primary btn'>
+            Mini Project
           </Link>
           <div className='dropdown dropdown-end'>
             <label tabIndex={0} className='btn'>

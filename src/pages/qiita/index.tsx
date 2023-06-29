@@ -265,7 +265,7 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
             <MdNavigateBefore />
             {year - 1}年
           </button>
-          <h1 className='text-2xl font-bold'>Qiita {year}年</h1>
+          <h2 className='text-2xl font-bold'>Qiita {year}年</h2>
           <button
             className='btn'
             onClick={() => {
@@ -286,13 +286,13 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
           <div>投稿がありません。</div>
         ) : (
           <div>
-            <h2 className='text-lg font-bold'>Article List</h2>
+            <h3 className='text-lg font-bold'>Article List</h3>
             <Article
               articles={filteredArticles.slice((page - 1) * 10, page * 10)}
             />
             {pagenation()}
             <div className='divider'></div>
-            <h2 className='text-lg font-bold'>Awards</h2>
+            <h3 className='text-lg font-bold'>Awards</h3>
             <div
               className={`flex flex-wrap justify-evenly gap-10 p-4 ${css.award}`}
             >
@@ -313,14 +313,14 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
               />
             </div>
             <div className='divider'></div>
-            <h2 className='text-lg font-bold'>Data</h2>
+            <h3 className='text-lg font-bold'>Data</h3>
             <div className='flex w-full flex-wrap justify-evenly gap-10'>
               <div className='w-full bg-white p-5 md:w-2/5'>
-                <h3 className='font-bold text-black'>月別投稿数</h3>
+                <h4 className='font-bold text-black'>月別投稿数</h4>
                 <Bar options={options} data={data} />
               </div>
               <div className='w-full bg-white p-5 md:w-2/5'>
-                <h3 className='font-bold text-black'>タグ投稿数</h3>
+                <h4 className='font-bold text-black'>タグ投稿数</h4>
                 <Bar options={options} data={tag_data} />
               </div>
             </div>

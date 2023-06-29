@@ -1,7 +1,12 @@
 import React from 'react'
+import { aboutMeData } from '@/libs/about-me'
 
 const AboutMe = () => {
-  return <div>AboutMe</div>
+  return (
+    <div>
+      {aboutMeData()}
+    </div>
+  )
 }
 
 export default AboutMe
