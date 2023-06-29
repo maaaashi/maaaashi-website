@@ -88,7 +88,9 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
   const [articles, setArticles] = useState<QiitaResponse[]>(
     convertArticles(originalArticles)
   )
-  const filteredArticles = filterArticles(articles, year)
+  const [filteredArticles, setFilterArticles] = useState(
+    filterArticles(articles, year)
+  )
   const [tagsCount, setTagsCount] = useState<{ [key in string]: number }[]>([])
 
   const getArticles = async () => {
@@ -98,6 +100,10 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
   }
 
   useEffect(() => {
+    setFilterArticles(filterArticles(articles, year))
+  }, [articles, year])
+
+  useEffect(() => {
     const tags = filteredArticles
       .map((article) => {
         return article.tags.map((tag) => tag.name)
@@ -105,7 +111,7 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
       .flat()
 
     setTagsCount(countAndSort(tags))
-  }, [year])
+  }, [year, filteredArticles])
 
   useEffect(() => {
     getArticles()
