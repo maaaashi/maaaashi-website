@@ -74,14 +74,21 @@ const convertArticles = (articles: any[]): QiitaResponse[] => {
   })
 }
 
+const filterArticles = (articles: QiitaResponse[], year: number) => {
+  return articles
+    .filter((article) => {
+      return year === article.created_at.getFullYear()
+    })
+    .sort((a, b) => a.created_at.getTime() - b.created_at.getTime())
+}
+
 const Qiita: FC<Props> = ({ articles: originalArticles }) => {
-  console.log(originalArticles)
   const [year, setYear] = useState(new Date().getFullYear())
   const [page, setPage] = useState(1)
   const [articles, setArticles] = useState<QiitaResponse[]>(
     convertArticles(originalArticles)
   )
-  const [filteredArticles, setFilteredArticles] = useState<QiitaResponse[]>([])
+  const filteredArticles = filterArticles(articles, year)
   const [tagsCount, setTagsCount] = useState<{ [key in string]: number }[]>([])
 
   const getArticles = async () => {
@@ -91,18 +98,7 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
   }
 
   useEffect(() => {
-    getArticles()
-  }, [])
-
-  useEffect(() => {
-    const newArticles = articles
-      .filter((article) => {
-        return year === article.created_at.getFullYear()
-      })
-      .sort((a, b) => a.created_at.getTime() - b.created_at.getTime())
-    setFilteredArticles(newArticles)
-
-    const tags = newArticles
+    const tags = filteredArticles
       .map((article) => {
         return article.tags.map((tag) => tag.name)
       })
@@ -110,6 +106,10 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
 
     setTagsCount(countAndSort(tags))
   }, [year])
+
+  useEffect(() => {
+    getArticles()
+  }, [])
 
   const data = {
     labels,
