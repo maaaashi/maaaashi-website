@@ -56,14 +56,8 @@ type Props = {
   articles: QiitaResponse[]
 }
 
-const Qiita: FC<Props> = ({ articles: originalArticles }) => {
-  const [year, setYear] = useState(new Date().getFullYear())
-  const [page, setPage] = useState(1)
-  const [articles, setArticles] = useState<QiitaResponse[]>(originalArticles)
-  const [filteredArticles, setFilteredArticles] = useState<QiitaResponse[]>([])
-  const [tagsCount, setTagsCount] = useState<{ [key in string]: number }[]>([])
-
-  const convertedArticles = articles.map((article) => {
+const convertArticles = (articles: any[]): QiitaResponse[] => {
+  return articles.map((article) => {
     return {
       rendered_body: article.rendered_body,
       body: article.body,
@@ -78,27 +72,21 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
       page_views_count: article.page_views_count,
     }
   })
+}
+
+const Qiita: FC<Props> = ({ articles: originalArticles }) => {
+  const [year, setYear] = useState(new Date().getFullYear())
+  const [page, setPage] = useState(1)
+  const [articles, setArticles] = useState<QiitaResponse[]>(
+    convertArticles(originalArticles)
+  )
+  const [filteredArticles, setFilteredArticles] = useState<QiitaResponse[]>([])
+  const [tagsCount, setTagsCount] = useState<{ [key in string]: number }[]>([])
 
   const getArticles = async () => {
     const response = await fetch('/api/getArticles')
     const json = await response.json()
-    setArticles(
-      json.map((article: QiitaResponse) => {
-        return {
-          rendered_body: article.rendered_body,
-          body: article.body,
-          comments_count: article.comments_count,
-          created_at: article.created_at,
-          likes_count: article.likes_count,
-          reactions_count: article.reactions_count,
-          stocks_count: article.stocks_count,
-          tags: article.tags,
-          title: article.title,
-          url: article.url,
-          page_views_count: article.page_views_count,
-        }
-      })
-    )
+    setArticles(convertArticles(json))
   }
 
   useEffect(() => {
@@ -106,7 +94,7 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
   }, [])
 
   useEffect(() => {
-    const newArticles = convertedArticles
+    const newArticles = articles
       .filter((article) => {
         return year === article.created_at.getFullYear()
       })
