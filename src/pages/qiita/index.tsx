@@ -114,7 +114,9 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
   }, [year, filteredArticles])
 
   useEffect(() => {
-    getArticles()
+    if (process.env.NODE_ENV !== 'development') {
+      getArticles()
+    }
   }, [])
 
   const data = {
@@ -330,16 +332,20 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const url = process.env.NEXT_PUBLIC_QIITA_URL!
-  const apiKey = process.env.NEXT_PUBLIC_QIITA_APIKEY!
-  const response = await fetch(url, {
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-    },
-  })
-  const articles = (await response.json()) as QiitaResponse[]
+  let articles: QiitaResponse[]
 
-  // const articles = mockData
+  if (process.env.NODE_ENV === 'development') {
+    articles = mockData
+  } else {
+    const url = process.env.NEXT_PUBLIC_QIITA_URL!
+    const apiKey = process.env.NEXT_PUBLIC_QIITA_APIKEY!
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+      },
+    })
+    articles = (await response.json()) as QiitaResponse[]
+  }
 
   return {
     props: {
