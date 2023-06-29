@@ -1,0 +1,19 @@
+.award {
+  animation-name: bDDYKU;
+  animation-duration: 3000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes bDDYKU {
+  0% {
+    box-shadow: rgba(81, 242, 203, 0.5) 0px 1px 1px 1px;
+  }
+
+  50% {
+    box-shadow: rgba(81, 242, 203, 0.9) 0px 10px 40px 1px;
+  }
+  100% {
+    box-shadow: rgba(81, 242, 203, 0.5) 0px 1px 1px 1px;
+  }
+}

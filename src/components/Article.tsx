@@ -13,9 +13,13 @@ const Article: FC<Props> = ({ articles }) => {
     <div className='carousel-center carousel rounded-box m-4 space-x-4 bg-neutral p-4'>
       {articles.map((article, index) => (
         <div className='carousel-item flex-col gap-2' key={index}>
-          <a href={article.url} target='_blank' className='relative'>
+          <a
+            href={article.url}
+            target='_blank'
+            className='relative hover:brightness-75'
+          >
             <Image src={qiita} alt={article.title} height={200} />
-            <p className='absolute left-16 right-14 top-14 font-bold'>
+            <p className='absolute left-16 right-14 top-14 font-bold text-black'>
               {article.title}
             </p>
             <div className='absolute bottom-0'>

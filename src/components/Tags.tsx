@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import React, { FC } from 'react'
-import rep from '@/libs/images/rep.jpg'
 import { icons } from '@/libs/images'
 
 interface Props {
@@ -21,7 +20,6 @@ const Tags: FC<Props> = ({ tags }) => {
             </div>
           )
         }
-        return <></>
       })}
     </div>
   )

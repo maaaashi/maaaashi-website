@@ -12,6 +12,10 @@ import { Bar } from 'react-chartjs-2'
 import type { GetServerSideProps } from 'next'
 import { mockData } from '@/libs/mockdata'
 import Article from '@/components/Article'
+import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md'
+import Awards from '@/components/Awards'
+import css from './index.module.css'
+import { countAndSort } from '@/libs/countAndSort'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
@@ -40,6 +44,7 @@ export interface QiitaResponse {
   comments_count: number
   created_at: Date
   reactions_count: number
+  likes_count: number
   stocks_count: number
   tags: { name: string; versions: any[] }[]
   title: string
@@ -54,7 +59,8 @@ type Props = {
 const Qiita: FC<Props> = ({ articles }) => {
   const [year, setYear] = useState(new Date().getFullYear())
   const [page, setPage] = useState(1)
-  const [filteredArticles, setFilteredArticles] = useState<any[]>([])
+  const [filteredArticles, setFilteredArticles] = useState<QiitaResponse[]>([])
+  const [tagsCount, setTagsCount] = useState<{ [key in string]: number }[]>([])
 
   const convertedArticles = articles.map((article) => {
     return {
@@ -62,6 +68,7 @@ const Qiita: FC<Props> = ({ articles }) => {
       body: article.body,
       comments_count: article.comments_count,
       created_at: new Date(article.created_at),
+      likes_count: article.likes_count,
       reactions_count: article.reactions_count,
       stocks_count: article.stocks_count,
       tags: article.tags,
@@ -72,13 +79,20 @@ const Qiita: FC<Props> = ({ articles }) => {
   })
 
   useEffect(() => {
-    setFilteredArticles(
-      convertedArticles
-        .filter((article) => {
-          return year === article.created_at.getFullYear()
-        })
-        .sort((a, b) => a.created_at.getTime() - b.created_at.getTime())
-    )
+    const newArticles = convertedArticles
+      .filter((article) => {
+        return year === article.created_at.getFullYear()
+      })
+      .sort((a, b) => a.created_at.getTime() - b.created_at.getTime())
+    setFilteredArticles(newArticles)
+
+    const tags = newArticles
+      .map((article) => {
+        return article.tags.map((tag) => tag.name)
+      })
+      .flat()
+
+    setTagsCount(countAndSort(tags))
   }, [year])
 
   const data = {
@@ -95,6 +109,18 @@ const Qiita: FC<Props> = ({ articles }) => {
       },
     ],
   }
+
+  const tag_data = {
+    labels: tagsCount.map((tag) => Object.keys(tag)[0]),
+    datasets: [
+      {
+        label: 'タグ',
+        data: tagsCount.map((tag) => Object.values(tag)[0]),
+        backgroundColor: 'rgba(85, 198, 0, 0.5)',
+      },
+    ],
+  }
+
   const maxPage = Math.floor(filteredArticles.length / 10) + 1
 
   const pagenation = () => {
@@ -174,11 +200,38 @@ const Qiita: FC<Props> = ({ articles }) => {
     )
   }
 
+  const topView = () => {
+    return filteredArticles.sort((a, b) => {
+      if (a.page_views_count < b.page_views_count) {
+        return 1
+      }
+      return -1
+    })[0]
+  }
+
+  const topLikes = () => {
+    return filteredArticles.sort((a, b) => {
+      if (a.likes_count < b.likes_count) {
+        return 1
+      }
+      return -1
+    })[0]
+  }
+
+  const topStock = () => {
+    return filteredArticles.sort((a, b) => {
+      if (a.stocks_count < b.stocks_count) {
+        return 1
+      }
+      return -1
+    })[0]
+  }
+
   return (
     <>
-      <div className='bg-base-200 sm:flex sm:justify-between'>
-        <h2 className='text-xl font-bold'>{year} Summary</h2>
-        <div className='btn-group my-4 w-full justify-center sm:m-0 sm:w-fit'>
+      <div className='border-b-2'>
+        <h1 className='text-2xl font-bold'>Qiita</h1>
+        <div className='flex items-center justify-between p-4'>
           <button
             className='btn-outline btn'
             onClick={() => {
@@ -186,41 +239,68 @@ const Qiita: FC<Props> = ({ articles }) => {
               setPage(1)
             }}
           >
-            Prev
+            <MdNavigateBefore />
+            {year - 1}年
           </button>
+          <p className='text-lg font-bold'>{year}年</p>
           <button
-            className='btn-outline btn-active btn'
-            onClick={() => {
-              setYear(new Date().getFullYear())
-              setPage(1)
-            }}
-          >
-            Current
-          </button>
-          <button
-            className='btn-outline btn'
+            className='btn'
             onClick={() => {
               setYear(year + 1)
               setPage(1)
             }}
           >
-            Next
+            {year + 1}年
+            <MdNavigateNext />
           </button>
         </div>
       </div>
       <div
-        className='overflow-y-auto'
-        style={{ height: 'calc(100vh - 150px)' }}
+        className='overflow-y-auto py-5'
+        style={{ height: 'calc(100vh - 230px)' }}
       >
         {filteredArticles.length === 0 ? (
           <div>投稿がありません。</div>
         ) : (
           <div>
+            <h2 className='text-lg font-bold'>Article List</h2>
             <Article
               articles={filteredArticles.slice((page - 1) * 10, page * 10)}
             />
             {pagenation()}
-            <Bar options={options} data={data} />
+            <div className='divider'></div>
+            <h2 className='text-lg font-bold'>Awards</h2>
+            <div
+              className={`flex flex-wrap justify-evenly gap-10 p-4 ${css.award}`}
+            >
+              <Awards
+                title='今年最も閲覧された記事'
+                article={topView()}
+                description={`${topView().page_views_count} views`}
+              />
+              <Awards
+                title='今年最もいいねされた記事'
+                article={topLikes()}
+                description={`${topView().likes_count} いいね`}
+              />
+              <Awards
+                title='今年最もストックされた記事'
+                article={topStock()}
+                description={`${topView().stocks_count} ストック`}
+              />
+            </div>
+            <div className='divider'></div>
+            <h2 className='text-lg font-bold'>Data</h2>
+            <div className='flex w-full flex-wrap justify-evenly gap-10'>
+              <div className='w-full bg-white p-5 md:w-2/5'>
+                <h3 className='font-bold text-black'>月別投稿数</h3>
+                <Bar options={options} data={data} />
+              </div>
+              <div className='w-full bg-white p-5 md:w-2/5'>
+                <h3 className='font-bold text-black'>タグ投稿数</h3>
+                <Bar options={options} data={tag_data} />
+              </div>
+            </div>
           </div>
         )}
       </div>
@@ -248,6 +328,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
           body: article.body,
           comments_count: article.comments_count,
           created_at: article.created_at,
+          likes_count: article.likes_count,
           reactions_count: article.reactions_count,
           stocks_count: article.stocks_count,
           tags: article.tags,
