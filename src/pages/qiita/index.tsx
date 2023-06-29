@@ -229,9 +229,8 @@ const Qiita: FC<Props> = ({ articles }) => {
 
   return (
     <>
-      <div className='border-b-2'>
-        <h1 className='text-2xl font-bold'>Qiita</h1>
-        <div className='flex items-center justify-between p-4'>
+      <div className='flex border-b-2'>
+        <div className='flex flex-1 items-center justify-between p-4'>
           <button
             className='btn-outline btn'
             onClick={() => {
@@ -242,7 +241,7 @@ const Qiita: FC<Props> = ({ articles }) => {
             <MdNavigateBefore />
             {year - 1}年
           </button>
-          <p className='text-lg font-bold'>{year}年</p>
+          <h1 className='text-2xl font-bold'>Qiita {year}年</h1>
           <button
             className='btn'
             onClick={() => {
