@@ -75,6 +75,7 @@ const convertArticles = (articles: any[]): QiitaResponse[] => {
 }
 
 const Qiita: FC<Props> = ({ articles: originalArticles }) => {
+  console.log(originalArticles)
   const [year, setYear] = useState(new Date().getFullYear())
   const [page, setPage] = useState(1)
   const [articles, setArticles] = useState<QiitaResponse[]>(
