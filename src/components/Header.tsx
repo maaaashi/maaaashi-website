@@ -70,7 +70,7 @@ const Header: FC = () => {
               <Link href='/'>Home</Link>
             </li>
             <li>
-              <Link href='/profile'>Profile</Link>
+              <Link href='/about-me'>About me</Link>
             </li>
             <li>
               <Link href='/qiita'>Qiita</Link>
@@ -98,8 +98,8 @@ const Header: FC = () => {
           <Link href='/' className='btn-primary btn'>
             Home
           </Link>
-          <Link href='/profile' className='btn-primary btn'>
-            Profile
+          <Link href='/about-me' className='btn-primary btn'>
+            About me
           </Link>
           <Link href='/qiita' className='btn-primary btn'>
             Qiita
