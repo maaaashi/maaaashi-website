@@ -9,7 +9,7 @@ import {
   Legend,
 } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
-import type { GetServerSideProps } from 'next'
+import type { GetStaticProps } from 'next'
 import { mockData } from '@/libs/mockdata'
 import Article from '@/components/Article'
 import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md'
@@ -56,9 +56,10 @@ type Props = {
   articles: QiitaResponse[]
 }
 
-const Qiita: FC<Props> = ({ articles }) => {
+const Qiita: FC<Props> = ({ articles: originalArticles }) => {
   const [year, setYear] = useState(new Date().getFullYear())
   const [page, setPage] = useState(1)
+  const [articles, setArticles] = useState<QiitaResponse[]>(originalArticles)
   const [filteredArticles, setFilteredArticles] = useState<QiitaResponse[]>([])
   const [tagsCount, setTagsCount] = useState<{ [key in string]: number }[]>([])
 
@@ -77,6 +78,32 @@ const Qiita: FC<Props> = ({ articles }) => {
       page_views_count: article.page_views_count,
     }
   })
+
+  const getArticles = async () => {
+    const response = await fetch('/api/getArticles')
+    const json = await response.json()
+    setArticles(
+      json.map((article: QiitaResponse) => {
+        return {
+          rendered_body: article.rendered_body,
+          body: article.body,
+          comments_count: article.comments_count,
+          created_at: article.created_at,
+          likes_count: article.likes_count,
+          reactions_count: article.reactions_count,
+          stocks_count: article.stocks_count,
+          tags: article.tags,
+          title: article.title,
+          url: article.url,
+          page_views_count: article.page_views_count,
+        }
+      })
+    )
+  }
+
+  useEffect(() => {
+    getArticles()
+  }, [])
 
   useEffect(() => {
     const newArticles = convertedArticles
@@ -307,17 +334,17 @@ const Qiita: FC<Props> = ({ articles }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  // const url = process.env.NEXT_PUBLIC_QIITA_URL!
-  // const apiKey = process.env.NEXT_PUBLIC_QIITA_APIKEY!
-  // const response = await fetch(url, {
-  //   headers: {
-  //     Authorization: `Bearer ${apiKey}`,
-  //   },
-  // })
-  // const articles = (await response.json()) as QiitaResponse[]
+export const getStaticProps: GetStaticProps = async () => {
+  const url = process.env.NEXT_PUBLIC_QIITA_URL!
+  const apiKey = process.env.NEXT_PUBLIC_QIITA_APIKEY!
+  const response = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+    },
+  })
+  const articles = (await response.json()) as QiitaResponse[]
 
-  const articles = mockData
+  // const articles = mockData
 
   return {
     props: {
