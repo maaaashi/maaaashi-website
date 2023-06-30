@@ -115,6 +115,7 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
 
   useEffect(() => {
     if (process.env.NODE_ENV !== 'development') {
+      // TODO 最新情報チェック中
       getArticles()
     }
   }, [])

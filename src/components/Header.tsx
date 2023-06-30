@@ -44,7 +44,7 @@ const Header: FC = () => {
 
   return (
     <div className='navbar bg-base-100'>
-      <div className='navbar-start'>
+      <div className='navbar-start w-2/5'>
         <div className='dropdown'>
           <label tabIndex={0} className='btn-ghost btn md:hidden'>
             <svg
@@ -93,7 +93,7 @@ const Header: FC = () => {
           {"Maaaashi's Website"}
         </h1>
       </div>
-      <div className='navbar-end gap-4 md:inline-flex'>
+      <div className='navbar-end w-3/5 gap-4 md:inline-flex'>
         <div className='hidden gap-4 lg:inline-flex'>
           <Link href='/' className='btn-primary btn'>
             Home
