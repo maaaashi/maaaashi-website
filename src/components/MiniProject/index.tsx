@@ -20,19 +20,31 @@ const MiniProject: FC<Props> = ({
   github,
 }) => {
   return (
-    <div className='flex items-center gap-5 p-5'>
-      <div className='w-96'>
-        <Image src={open} alt={title} />
-      </div>
+    <div className='flex w-fit items-center gap-5 p-5'>
+      <a
+        href={href}
+        target='_blank'
+        className='w-96 rounded-2xl border hover:brightness-90'
+      >
+        <Image
+          src={open}
+          alt={title}
+          className='h-auto max-w-sm rounded-lg shadow-lg shadow-black/30 transition-shadow'
+        />
+      </a>
       <div className='text-center'>
         <h3>{title}</h3>
         <p>{description}</p>
 
-        <div className='flex justify-evenly rounded-lg bg-base-300 p-5'>
-          <a target='_blank' href={github}>
+        <div className='flex justify-evenly rounded-lg bg-base-300 p-5 shadow-lg shadow-black/30 transition-shadow'>
+          <a target='_blank' href={github} className='hover:brightness-110'>
             <AiFillGithub size={40} />
           </a>
-          <a target='_blank' href={qiita} className='h-fit w-fit'>
+          <a
+            target='_blank'
+            href={qiita}
+            className='h-fit w-fit hover:brightness-90'
+          >
             <SiQiita
               size={40}
               color='white'
