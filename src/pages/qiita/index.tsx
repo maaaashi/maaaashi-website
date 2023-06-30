@@ -332,7 +332,7 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  let articles: QiitaResponse[]
+  let articles: any[]
 
   if (process.env.NODE_ENV === 'development') {
     articles = mockData
@@ -344,7 +344,7 @@ export const getStaticProps: GetStaticProps = async () => {
         Authorization: `Bearer ${apiKey}`,
       },
     })
-    articles = (await response.json()) as QiitaResponse[]
+    articles = (await response.json()) as any[]
   }
 
   return {
