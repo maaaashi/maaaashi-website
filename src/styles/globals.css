@@ -24,3 +24,22 @@
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
 }
+
+.markdown h2 {
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.markdown h3 {
+  font-size: large;
+  font-weight: bold;
+}
+
+.markdown ul {
+  list-style: inside;
+}
+
+.markdown ol {
+  list-style: auto;
+  margin-left: 1.5rem;
+}
