@@ -1,32 +1,14 @@
-import { useRef } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
+import React from 'react'
+import dynamic from 'next/dynamic'
 
-const Box = () => {
-  const ref = useRef(null)
+const Scene = dynamic(() => import('@/components/Scene'), {
+  ssr: false,
+})
 
-  useFrame(() => {
-    const current = ref.current! as any
-    current.rotation.x += 0.01
-    current.rotation.y += 0.01
-  })
-
+function App() {
   return (
-    <mesh ref={ref}>
-      <boxBufferGeometry args={[1, 1, 1]} />
-      <meshLambertMaterial color={'skyblue'} />
-    </mesh>
-  )
-}
-
-const App = () => {
-  return (
-    <div className='h-full'>
-      <h2>Home</h2>
-      <Canvas dpr={1}>
-        <ambientLight intensity={0.5} />
-        <directionalLight intensity={0.5} position={[-10, 10, 10]} />
-        <Box />
-      </Canvas>
+    <div className='h-full w-full' style={{ cursor: 'grab' }}>
+      <Scene />
     </div>
   )
 }
