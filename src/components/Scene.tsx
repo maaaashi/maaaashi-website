@@ -3,8 +3,14 @@ import { Canvas } from '@react-three/fiber'
 import { OrbitControls, PerspectiveCamera, Stars } from '@react-three/drei'
 import BoxComponent from './Box'
 
+interface Position {
+  x: number
+  y: number
+  z: number
+}
+
 function Scene() {
-  let position: { qiita: {}; about: {}; project: {} }
+  let position: { qiita: Position; about: Position; project: Position }
   if (window.innerWidth < 600) {
     position = {
       qiita: {
