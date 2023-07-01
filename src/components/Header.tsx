@@ -67,9 +67,6 @@ const Header: FC = () => {
             className='dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow'
           >
             <li>
-              <Link href='/'>Home</Link>
-            </li>
-            <li>
               <Link href='/about-me'>About me</Link>
             </li>
             <li>
@@ -80,21 +77,21 @@ const Header: FC = () => {
             </li>
           </ul>
         </div>
-        <h1 className='flex items-center text-xl font-bold normal-case'>
+        <Link
+          href='/'
+          className='btn-ghost btn flex items-center text-xl font-bold normal-case'
+        >
           <Image
             src={rep}
             alt=''
             width='50'
             style={{ marginRight: '5px', borderRadius: '50%' }}
           />
-          {"Maaaashi's Website"}
-        </h1>
+          <h1>{"Maaaashi's Website"}</h1>
+        </Link>
       </div>
       <div className='navbar-end w-3/5 gap-4 md:inline-flex'>
         <div className='hidden gap-4 lg:inline-flex'>
-          <Link href='/' className='btn-primary btn'>
-            Home
-          </Link>
           <Link href='/about-me' className='btn-primary btn'>
             About me
           </Link>
