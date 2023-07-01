@@ -6,7 +6,7 @@ import BoxComponent from './Box'
 function Scene() {
   const args = {
     qiita: {
-      position: { x: -1.2, y: 1, z: -0.2 },
+      position: { x: -0.5, y: 1, z: -1 },
       rotation: 1,
       link: 'qiita',
       size: 1,
@@ -16,17 +16,17 @@ function Scene() {
       },
     },
     about: {
-      position: { x: 0, y: -0.2, z: 0 },
+      position: { x: 0.4, y: 1, z: 1 },
       rotation: 2,
       link: 'about-me',
-      size: 1.2,
+      size: 1,
       boxColor: {
         normal: '#765615',
         hover: '#47330c',
       },
     },
     project: {
-      position: { x: 1.2, y: 1, z: -0.2 },
+      position: { x: 0, y: 0, z: 0 },
       rotation: 2,
       link: 'mini-project',
       size: 1,
