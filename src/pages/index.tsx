@@ -9,7 +9,7 @@ const Scene = dynamic(() => import('@/components/Scene'), {
 
 function App() {
   return (
-    <div className='h-full w-full bg-black' style={{ cursor: 'grab' }}>
+    <div className='h-full w-full bg-black'>
       <Scene />
     </div>
   )
