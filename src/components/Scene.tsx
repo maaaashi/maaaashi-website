@@ -10,18 +10,30 @@ function Scene() {
       rotation: 1,
       link: 'qiita',
       size: 1,
+      boxColor: {
+        normal: '#157615',
+        hover: '#0c430c',
+      },
     },
     about: {
       position: { x: 0, y: -0.2, z: 0 },
       rotation: 2,
       link: 'about-me',
       size: 1.2,
+      boxColor: {
+        normal: '#765615',
+        hover: '#47330c',
+      },
     },
     project: {
       position: { x: 1.2, y: 1, z: -0.2 },
       rotation: 2,
       link: 'mini-project',
       size: 1,
+      boxColor: {
+        normal: '#153976',
+        hover: '#0c2247',
+      },
     },
   }
   return (

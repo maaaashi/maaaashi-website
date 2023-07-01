@@ -48,7 +48,7 @@ const MiniProject: FC<Props> = ({
             <SiQiita
               size={40}
               color='white'
-              style={{ backgroundColor: 'rgba(85, 198, 0)' }}
+              style={{ backgroundColor: '#00c600' }}
             />
           </a>
         </div>
