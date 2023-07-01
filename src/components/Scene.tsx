@@ -18,7 +18,7 @@ function Scene() {
     project: {
       position: { x: 1, y: 1, z: -0.1 },
       rotation: 2,
-      link: 'project',
+      link: 'mini-project',
     },
   }
   return (
