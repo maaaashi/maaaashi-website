@@ -4,9 +4,32 @@ import { OrbitControls, PerspectiveCamera, Stars } from '@react-three/drei'
 import BoxComponent from './Box'
 
 function Scene() {
+  let position: { qiita: {}; about: {}; project: {} }
+  if (window.innerWidth < 600) {
+    position = {
+      qiita: {
+        x: -0.5,
+        y: 1,
+        z: -1,
+      },
+      about: { x: 0.4, y: 1, z: 1 },
+      project: { x: 0, y: 0, z: 0 },
+    }
+  } else {
+    position = {
+      qiita: {
+        x: -2,
+        y: 1,
+        z: -1,
+      },
+      about: { x: 1, y: 1, z: 1 },
+      project: { x: 0, y: 0, z: 0 },
+    }
+  }
+
   const args = {
     qiita: {
-      position: { x: -0.5, y: 1, z: -1 },
+      position: position.qiita,
       rotation: 1,
       link: 'qiita',
       size: 1,
@@ -16,7 +39,7 @@ function Scene() {
       },
     },
     about: {
-      position: { x: 0.4, y: 1, z: 1 },
+      position: position.about,
       rotation: 2,
       link: 'about-me',
       size: 1,
@@ -26,7 +49,7 @@ function Scene() {
       },
     },
     project: {
-      position: { x: 0, y: 0, z: 0 },
+      position: position.project,
       rotation: 2,
       link: 'mini-project',
       size: 1,
