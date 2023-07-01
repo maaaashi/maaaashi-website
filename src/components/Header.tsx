@@ -84,7 +84,7 @@ const Header: FC = () => {
           <Image
             src={rep}
             alt=''
-            width='50'
+            width='30'
             style={{ marginRight: '5px', borderRadius: '50%' }}
           />
           <h1>{"Maaaashi's Website"}</h1>
