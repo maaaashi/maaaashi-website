@@ -78,9 +78,6 @@ const Header: FC = () => {
             <li>
               <Link href='/mini-project'>Mini Project</Link>
             </li>
-            <li>
-              <a>Theme</a>
-            </li>
           </ul>
         </div>
         <h1 className='flex items-center text-xl font-bold normal-case'>
