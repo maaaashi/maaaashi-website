@@ -6,19 +6,22 @@ import BoxComponent from './Box'
 function Scene() {
   const args = {
     qiita: {
-      position: { x: -1, y: 0.2, z: 0 },
+      position: { x: -1.2, y: 1, z: -0.2 },
       rotation: 1,
       link: 'qiita',
+      size: 1,
     },
     about: {
       position: { x: 0, y: -0.2, z: 0 },
       rotation: 2,
       link: 'about-me',
+      size: 1.2,
     },
     project: {
-      position: { x: 1, y: 1, z: -0.1 },
+      position: { x: 1.2, y: 1, z: -0.2 },
       rotation: 2,
       link: 'mini-project',
+      size: 1,
     },
   }
   return (

@@ -42,11 +42,12 @@ interface Props {
       z: number
     }
     rotation: number
+    size: number
   }
 }
 
 const BoxComponent: FC<Props> = ({ args }) => {
-  const { link, position, rotation } = args
+  const { link, position, rotation, size } = args
   const [hovered, setHovered] = useState(false)
   const router = useRouter()
   const { x, y, z } = position
@@ -108,7 +109,7 @@ const BoxComponent: FC<Props> = ({ args }) => {
         onClick={clickHandler}
         onPointerOver={() => hoverHandler(true)}
         onPointerOut={() => hoverHandler(false)}
-        args={[0.5, 0.5, 0.5]}
+        args={[size, size, size]}
       >
         <meshLambertMaterial color={hslToRgb(+h, +s, +l)} map={texture} />
       </Box>
