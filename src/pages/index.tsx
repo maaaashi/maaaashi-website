@@ -1,11 +1,6 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 import Swal from 'sweetalert2'
-import {
-  PiHandGrabbing,
-  PiHandGrabbingFill,
-  PiHandGrabbingThin,
-} from 'react-icons/pi'
 const Scene = dynamic(() => import('@/components/Scene'), {
   ssr: false,
 })
