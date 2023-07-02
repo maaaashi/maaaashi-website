@@ -36,16 +36,16 @@ function Scene() {
     position = {
       qiita: {
         x: -2,
-        y: 1,
-        z: -1,
+        y: -0.3,
+        z: 0,
       },
-      about: { x: 1, y: 1, z: 1 },
-      project: { x: 0, y: 0, z: 0 },
+      about: { x: 0, y: -0.3, z: 0 },
+      project: { x: 2, y: -0.3, z: 0 },
     }
     size = {
-      qiita: 0.5,
-      about: 0.5,
-      project: 0.5,
+      qiita: 1,
+      about: 1,
+      project: 1,
     }
   }
 
