@@ -56,8 +56,8 @@ function Scene() {
       link: 'qiita',
       size: size.qiita,
       boxColor: {
-        normal: '#157615',
-        hover: '#0c430c',
+        normal: 'translate',
+        hover: '#1fac1f',
       },
     },
     about: {
@@ -66,8 +66,8 @@ function Scene() {
       link: 'about-me',
       size: size.about,
       boxColor: {
-        normal: '#765615',
-        hover: '#47330c',
+        normal: '#translate',
+        hover: '#af8b16',
       },
     },
     project: {
@@ -76,15 +76,15 @@ function Scene() {
       link: 'mini-project',
       size: size.project,
       boxColor: {
-        normal: '#153976',
-        hover: '#0c2247',
+        normal: '#translate',
+        hover: '#2667d7',
       },
     },
   }
   return (
     <Canvas>
-      <ambientLight intensity={1} />
-      <pointLight position={[10, 10, 10]} intensity={2} />
+      <ambientLight intensity={0.5} />
+      <pointLight position={[10, 10, 10]} intensity={1} />
       <PerspectiveCamera makeDefault position={[0, 0, 5]} />
       <OrbitControls />
       <BoxComponent args={args.qiita} />

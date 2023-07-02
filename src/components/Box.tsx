@@ -1,5 +1,5 @@
 import { Box } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber'
+import { useFrame, useLoader } from '@react-three/fiber'
 import { useRouter } from 'next/router'
 import React, { FC, useMemo, useRef, useState } from 'react'
 import { Mesh, TextureLoader } from 'three'
@@ -30,28 +30,10 @@ const BoxComponent: FC<Props> = ({ args }) => {
   const clickHandler = () => {
     router.push(`/${link}`)
   }
-  const element = document.querySelector('html')!
   const color = hovered ? boxColor.hover : boxColor.normal
 
   const TexturedBox = () => {
-    const canvas = document.createElement('canvas')
-    const texture = useMemo(() => {
-      const context = canvas.getContext('2d')!
-      canvas.width = 256
-      canvas.height = 256
-      context.fillStyle = 'white'
-      context.fillRect(0, 0, canvas.width, canvas.height)
-      context.fillStyle = 'black'
-      context.font = '36px sans-serif'
-      context.textAlign = 'center'
-      context.textBaseline = 'middle'
-      context.fillText(
-        link.toLocaleUpperCase(),
-        canvas.width / 2,
-        canvas.height / 2
-      )
-      return new TextureLoader().load(canvas.toDataURL())
-    }, [])
+    const texture = useLoader(TextureLoader, `/${link}.png`)
 
     const hoverHandler = (hover: boolean) => {
       setHovered(hover)

@@ -59,8 +59,6 @@ html {
 
 .moveMouse {
   animation: move-image 2s;
-  justify-content: center;
-  align-items: center;
 }
 
 @keyframes move-image {
@@ -84,5 +82,16 @@ html {
   }
   100% {
     transform: translateY(0px);
+  }
+}
+
+.pinchMouse {
+  animation: pinch-image 4s;
+  display: none;
+}
+
+@keyframes pinch-image {
+  50% {
+    display: block;
   }
 }
