@@ -91,7 +91,7 @@ const Header: FC = () => {
         </Link>
       </div>
       <div className='navbar-end w-3/5 gap-4 md:inline-flex'>
-        <div className='hidden gap-4 lg:inline-flex'>
+        <div className='hidden gap-4 md:inline-flex'>
           <Link href='/about-me' className='btn-primary btn'>
             About me
           </Link>

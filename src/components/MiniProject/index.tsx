@@ -20,16 +20,16 @@ const MiniProject: FC<Props> = ({
   github,
 }) => {
   return (
-    <div className='flex w-fit items-center gap-5 p-5'>
+    <div className='flex w-fit flex-wrap items-center justify-center gap-5 p-5'>
       <a
         href={href}
         target='_blank'
-        className='w-96 rounded-2xl border hover:brightness-90'
+        className='max-w-sm rounded-2xl border hover:brightness-90'
       >
         <Image
           src={open}
           alt={title}
-          className='h-auto max-w-sm rounded-lg shadow-lg shadow-black/30 transition-shadow'
+          className='h-auto rounded-lg shadow-lg shadow-black/30 transition-shadow'
         />
       </a>
       <div className='text-center'>
