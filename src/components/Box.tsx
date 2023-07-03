@@ -31,8 +31,10 @@ const BoxComponent: FC<Props> = ({ args }) => {
 
   useFrame(() => {
     if (zoom && camera.position.z !== 0) {
-      camera.lookAt(new Vector3(0, 0, -10))
-      const zoomSpeed = -0.1
+      camera.position.x = x
+      camera.position.y = y
+      camera.lookAt(new Vector3(x, y, -10))
+      const zoomSpeed = -0.05
       camera.position.z += zoomSpeed
     }
   })
