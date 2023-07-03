@@ -43,6 +43,11 @@ export const aboutMeData = () => {
 
   return `
 
-## Comming Soon...
+## 出身
+
+- 東京都出身
+
+
+
 `
 }
