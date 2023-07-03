@@ -1,8 +1,8 @@
 import { Box } from '@react-three/drei'
-import { useFrame, useLoader } from '@react-three/fiber'
+import { useFrame, useLoader, useThree } from '@react-three/fiber'
 import { useRouter } from 'next/router'
 import React, { FC, useMemo, useRef, useState } from 'react'
-import { Mesh, TextureLoader } from 'three'
+import { Mesh, TextureLoader, Vector3 } from 'three'
 
 interface Props {
   args: {
@@ -26,9 +26,23 @@ const BoxComponent: FC<Props> = ({ args }) => {
   const [hovered, setHovered] = useState(false)
   const router = useRouter()
   const { x, y, z } = position
+  const { camera } = useThree()
+  const [zoom, setZoom] = useState(false)
+
+  useFrame(() => {
+    if (zoom && camera.position.z !== 0) {
+      camera.lookAt(new Vector3(0, 0, -10))
+      const zoomSpeed = -0.1
+      camera.position.z += zoomSpeed
+    }
+  })
 
   const clickHandler = () => {
-    router.push(`/${link}`)
+    setZoom(true)
+
+    setTimeout(() => {
+      router.push(`/${link}`)
+    }, 1000)
   }
   const color = hovered ? boxColor.hover : boxColor.normal
 

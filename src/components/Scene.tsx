@@ -17,6 +17,7 @@ interface Position {
 function Scene() {
   let position: { qiita: Position; about: Position; project: Position }
   let size: { qiita: number; about: number; project: number }
+
   if (window.innerWidth < 600) {
     position = {
       qiita: {
