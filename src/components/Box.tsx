@@ -31,8 +31,6 @@ const BoxComponent: FC<Props> = ({ args }) => {
 
   useFrame(() => {
     if (zoom && camera.position.z !== 0) {
-      camera.position.x = x
-      camera.position.y = y
       camera.lookAt(new Vector3(x, y, -10))
       const zoomSpeed = -0.05
       camera.position.z += zoomSpeed
@@ -40,10 +38,14 @@ const BoxComponent: FC<Props> = ({ args }) => {
   })
 
   const clickHandler = () => {
+    camera.position.x = x
+    camera.position.y = y
+    camera.position.z = 3
+
     setZoom(true)
 
     setTimeout(() => {
-      router.push(`/${link}`)
+      // router.push(`/${link}`)
     }, 1000)
   }
   const color = hovered ? boxColor.hover : boxColor.normal
