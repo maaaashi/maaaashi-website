@@ -45,7 +45,7 @@ const BoxComponent: FC<Props> = ({ args }) => {
     setZoom(true)
 
     setTimeout(() => {
-      // router.push(`/${link}`)
+      router.push(`/${link}`)
     }, 1000)
   }
   const color = hovered ? boxColor.hover : boxColor.normal

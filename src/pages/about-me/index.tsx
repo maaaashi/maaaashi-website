@@ -43,7 +43,12 @@ const AboutMe = () => {
       </div>
       <div className='mt-14 border bg-base-100 p-5'>
         <h3>スキル</h3>
-        <TechStack />
+        <div className='flex flex-col gap-4 md:flex-row'>
+          <TechStack title='FrontEnd' />
+          <TechStack title='BackEnd' />
+          <TechStack title='InfraStructure' />
+          <TechStack title='Other' />
+        </div>
       </div>
     </div>
   )
