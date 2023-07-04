@@ -10,7 +10,7 @@ const Tags: FC<Props> = ({ tags }) => {
   return (
     <div className='avatar-group justify-center -space-x-6'>
       {tags.map((tag, index) => {
-        const icon = icons[tag.name]
+        const icon = icons[tag.name.toLocaleLowerCase()]
         if (icon) {
           return (
             <div key={index} className='avatar'>

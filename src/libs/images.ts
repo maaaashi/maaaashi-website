@@ -34,21 +34,23 @@ import graphql from '@/libs/images/icons/graphql.png'
 import next from '@/libs/images/icons/next.svg'
 import react from '@/libs/images/icons/react.png'
 import vitest from '@/libs/images/icons/vitest.png'
+import html from '@/libs/images/icons/html.png'
+import mysql from '@/libs/images/icons/mysql.png'
 
 export const icons: { [key in string]: any } = {
-  RubyOnRails: RubyOnRails,
-  Ruby: Ruby,
-  ServerlessFramework: ServerlessFramework,
-  SvelteKit: SvelteKit,
-  Qiita: Qiita,
-  TypeScript: TypeScript,
-  Keycloak: Keycloak,
-  Docker: Docker,
-  Vue: Vue,
-  Nuxt: Nuxt,
-  JavaScript: JavaScript,
-  Solid: Solid,
-  Supabase: Supabase,
+  rubyonrails: RubyOnRails,
+  ruby: Ruby,
+  serverlessframework: ServerlessFramework,
+  sveltekit: SvelteKit,
+  qiita: Qiita,
+  typescript: TypeScript,
+  keycloak: Keycloak,
+  docker: Docker,
+  vue: Vue,
+  nuxt: Nuxt,
+  javascript: JavaScript,
+  solid: Solid,
+  supabase: Supabase,
   alpine: alpine,
   vite: vite,
   node: node,
@@ -60,6 +62,7 @@ export const icons: { [key in string]: any } = {
   safari: safari,
   css: css,
   tailwind: tailwind,
+  tailwindcss: tailwind,
   vercel: vercel,
   aws: aws,
   ec2: ec2,
@@ -70,6 +73,10 @@ export const icons: { [key in string]: any } = {
   gitlab: gitlab,
   graphql: graphql,
   next: next,
+  'next.js': next,
   react: react,
   vitest: vitest,
+  html: html,
+  nodejs: node,
+  mysql: mysql,
 }
