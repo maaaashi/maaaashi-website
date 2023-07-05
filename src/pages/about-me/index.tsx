@@ -90,8 +90,8 @@ const AboutMe = () => {
         {/* <ReactMarkdown remarkPlugins={[gfm]}>{aboutMeData()}</ReactMarkdown> */}
       </div>
       <div className='mt-14 border bg-base-100 p-5'>
-        <h3>スキル</h3>
-        <div className='flex flex-col gap-4 md:flex-row md:flex-wrap md:justify-evenly'>
+        <h3>スキル / 得意な技術</h3>
+        <div className='flex flex-col gap-4 p-5 md:flex-row md:flex-wrap md:justify-evenly'>
           <TechStack stacks={stacks.frontend} title='FrontEnd' />
           <TechStack stacks={stacks.backend} title='BackEnd' />
           <TechStack stacks={stacks.infrastructure} title='InfraStructure' />

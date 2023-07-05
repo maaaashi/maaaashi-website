@@ -36,6 +36,9 @@ import react from '@/libs/images/icons/react.png'
 import vitest from '@/libs/images/icons/vitest.png'
 import html from '@/libs/images/icons/html.png'
 import mysql from '@/libs/images/icons/mysql.png'
+import awsCDK from '@/libs/images/icons/aws-cdk.png'
+import jest from '@/libs/images/icons/jest.png'
+import git from '@/libs/images/icons/git.png'
 
 export const icons: { [key in string]: any } = {
   rubyonrails: RubyOnRails,
@@ -79,4 +82,8 @@ export const icons: { [key in string]: any } = {
   html: html,
   nodejs: node,
   mysql: mysql,
+  'aws cdk': awsCDK,
+  jest: jest,
+  git: git,
+  'docker swarm': Docker,
 }
