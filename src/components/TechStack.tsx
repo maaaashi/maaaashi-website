@@ -10,7 +10,10 @@ interface Props {
 
 const TechStack: FC<Props> = ({ title, stacks }) => {
   return (
-    <div className='w-72 bg-base-200 p-5' style={{ minWidth: '100px' }}>
+    <div
+      className='w-full max-w-full bg-base-200 p-5 md:w-72'
+      style={{ minWidth: '100px' }}
+    >
       <h4 className='font-bold'>{title}</h4>
       {stacks.map((stack, index) => {
         return (
@@ -27,7 +30,7 @@ const TechStack: FC<Props> = ({ title, stacks }) => {
               {stack.tech}
             </div>
             <progress
-              className='progress progress-secondary w-56'
+              className='progress progress-secondary w-full max-w-full md:w-56'
               value={stack.level}
               max='5'
             ></progress>

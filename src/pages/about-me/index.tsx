@@ -7,7 +7,7 @@ import aboutMe from '@/libs/images/rep.jpg'
 import TechStack from '@/components/TechStack'
 
 export type Stack = {
-  [key in 'frontend' | 'backend' | 'infrastructure' | 'other']: {
+  [key in 'frontend' | 'backend' | 'infrastructure' | 'test' | 'other']: {
     tech: string
     level: number
   }[]
@@ -43,12 +43,15 @@ const AboutMe = () => {
       { tech: 'ServerlessFrameWork', level: 4 },
       { tech: 'AWS CDK', level: 3 },
     ],
+    test: [
+      { tech: 'vitest', level: 4 },
+      { tech: 'jest', level: 3 },
+      { tech: 'Rspec', level: 5 },
+    ],
     other: [
       { tech: 'Git', level: 5 },
       { tech: 'docker', level: 4 },
       { tech: 'docker swarm', level: 3 },
-      { tech: 'vitest', level: 4 },
-      { tech: 'jest', level: 3 },
     ],
   }
   return (
@@ -59,14 +62,17 @@ const AboutMe = () => {
       <h2 className='text-2xl font-bold'>About</h2>
       {/* <div style={{ height: '20000px' }}> */}
       <div className='h-fit'>
-        <div className='flex flex-col items-center gap-4 md:flex-row md:items-start md:justify-evenly'>
+        <div className='flex flex-col items-center justify-center gap-4 md:flex-row md:items-start md:justify-evenly'>
           <div className='avatar md:m-0'>
             <div className='w-32 rounded-full md:w-48'>
               <Image src={aboutMe} alt='大岡正志' />
             </div>
           </div>
           <div className='w-72 md:w-96'>
-            <h3 className='text-xl'>大岡正志</h3>
+            <p>
+              <span className='font-bold'>名前：</span>
+              大岡正志
+            </p>
             <p className='my-2'>
               <span className='font-bold'>出身：</span>
               東京
@@ -95,6 +101,7 @@ const AboutMe = () => {
           <TechStack stacks={stacks.frontend} title='FrontEnd' />
           <TechStack stacks={stacks.backend} title='BackEnd' />
           <TechStack stacks={stacks.infrastructure} title='InfraStructure' />
+          <TechStack stacks={stacks.test} title='Test' />
           <TechStack stacks={stacks.other} title='Other' />
         </div>
       </div>
