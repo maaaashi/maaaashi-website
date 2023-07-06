@@ -59,16 +59,16 @@ const AboutMe = () => {
       className='markdown overflow-y-auto'
       style={{ height: 'calc(100vh - 100px) ' }}
     >
-      <h2 className='text-2xl font-bold'>About</h2>
-      {/* <div style={{ height: '20000px' }}> */}
-      <div className='h-fit'>
+      <h2 className='mb-5 text-2xl font-bold'>About ME</h2>
+      <div style={{ height: '20000px' }}>
+        {/* <div className='h-fit'> */}
         <div className='flex flex-col items-center justify-center gap-4 md:flex-row md:items-start md:justify-evenly'>
           <div className='avatar md:m-0'>
             <div className='w-32 rounded-full md:w-48'>
               <Image src={aboutMe} alt='大岡正志' />
             </div>
           </div>
-          <div className='w-72 md:w-96'>
+          <div className='w-72 rounded-md bg-base-100 p-3 md:w-96'>
             <p>
               <span className='font-bold'>名前：</span>
               大岡正志
@@ -92,17 +92,16 @@ const AboutMe = () => {
             </p>
           </div>
         </div>
-        <div></div>
         {/* <ReactMarkdown remarkPlugins={[gfm]}>{aboutMeData()}</ReactMarkdown> */}
-      </div>
-      <div className='mt-14 border bg-base-100 p-5'>
-        <h3>スキル / 得意な技術</h3>
-        <div className='flex flex-col gap-4 p-5 md:flex-row md:flex-wrap md:justify-evenly'>
-          <TechStack stacks={stacks.frontend} title='FrontEnd' />
-          <TechStack stacks={stacks.backend} title='BackEnd' />
-          <TechStack stacks={stacks.infrastructure} title='InfraStructure' />
-          <TechStack stacks={stacks.test} title='Test' />
-          <TechStack stacks={stacks.other} title='Other' />
+        <div className='mt-14 border bg-base-100 p-5'>
+          <h3>スキル / 得意な技術</h3>
+          <div className='flex flex-col gap-4 p-5 md:flex-row md:flex-wrap md:justify-evenly'>
+            <TechStack stacks={stacks.frontend} title='FrontEnd' />
+            <TechStack stacks={stacks.backend} title='BackEnd' />
+            <TechStack stacks={stacks.infrastructure} title='InfraStructure' />
+            <TechStack stacks={stacks.test} title='Test' />
+            <TechStack stacks={stacks.other} title='Other' />
+          </div>
         </div>
       </div>
     </div>
