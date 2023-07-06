@@ -107,11 +107,11 @@ const Header: FC = () => {
             </label>
             <ul
               tabIndex={0}
-              className='dropdown-content menu rounded-box h-44 w-fit flex-nowrap overflow-y-auto bg-base-100 p-2 shadow'
+              className='dropdown-content menu rounded-box h-60 w-fit flex-nowrap overflow-y-auto bg-base-300 p-2 shadow'
             >
               {listTheme.map((theme, index) => (
-                <li key={index} data-theme={theme}>
-                  <button data-set-theme={theme} data-act-class='border'>
+                <li key={index} data-theme={theme} className='my-1'>
+                  <button data-act-class='border'>
                     <span className='h-5 w-5 bg-primary'></span>
                     <span className='h-5 w-5 bg-secondary'></span>
                     <span className='h-5 w-5 bg-success'></span>
