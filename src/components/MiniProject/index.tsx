@@ -2,14 +2,21 @@ import React, { FC } from 'react'
 import { AiFillGithub } from 'react-icons/ai'
 import { SiQiita } from 'react-icons/si'
 import open from './opinionAi.png'
+import website from './website.png'
 import Image from 'next/image'
 
 interface Props {
   title: string
   href: string
   description: string
+  image: 'open' | 'website'
   qiita?: string
   github?: string
+}
+
+const images = {
+  open,
+  website,
 }
 
 const MiniProject: FC<Props> = ({
@@ -17,6 +24,7 @@ const MiniProject: FC<Props> = ({
   href,
   description,
   qiita,
+  image,
   github,
 }) => {
   return (
@@ -27,12 +35,12 @@ const MiniProject: FC<Props> = ({
         className='max-w-sm rounded-2xl border hover:brightness-90'
       >
         <Image
-          src={open}
+          src={images[image]}
           alt={title}
           className='h-auto rounded-lg shadow-lg shadow-black/30 transition-shadow'
         />
       </a>
-      <div className='text-center'>
+      <div className='w-full max-w-[14rem] text-center'>
         <h3>{title}</h3>
         <p>{description}</p>
 
@@ -40,17 +48,21 @@ const MiniProject: FC<Props> = ({
           <a target='_blank' href={github} className='hover:brightness-110'>
             <AiFillGithub size={40} />
           </a>
-          <a
-            target='_blank'
-            href={qiita}
-            className='h-fit w-fit hover:brightness-90'
-          >
-            <SiQiita
-              size={40}
-              color='white'
-              style={{ backgroundColor: '#00c600' }}
-            />
-          </a>
+          {qiita ? (
+            <a
+              target='_blank'
+              href={qiita}
+              className='h-fit w-fit hover:brightness-90'
+            >
+              <SiQiita
+                size={40}
+                color='white'
+                style={{ backgroundColor: '#00c600' }}
+              />
+            </a>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </div>
