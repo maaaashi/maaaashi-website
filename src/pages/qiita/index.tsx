@@ -16,6 +16,7 @@ import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md'
 import Awards from '@/components/Awards'
 import css from './index.module.css'
 import { countAndSort } from '@/libs/countAndSort'
+import Swal from 'sweetalert2'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
@@ -82,6 +83,16 @@ const filterArticles = (articles: QiitaResponse[], year: number) => {
     .sort((a, b) => a.created_at.getTime() - b.created_at.getTime())
 }
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  showCloseButton: false,
+  showCancelButton: false,
+  timer: 2000,
+  timerProgressBar: false,
+})
+
 const Qiita: FC<Props> = ({ articles: originalArticles }) => {
   const [year, setYear] = useState(new Date().getFullYear())
   const [page, setPage] = useState(1)
@@ -94,9 +105,17 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
   const [tagsCount, setTagsCount] = useState<{ [key in string]: number }[]>([])
 
   const getArticles = async () => {
+    Toast.fire({
+      icon: 'info',
+      title: '最新データを取得します。',
+    })
     const response = await fetch('/api/getArticles')
     const json = await response.json()
     setArticles(convertArticles(json))
+    Toast.fire({
+      icon: 'success',
+      title: '更新が完了しました。',
+    })
   }
 
   useEffect(() => {
@@ -115,7 +134,6 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
 
   useEffect(() => {
     if (process.env.NODE_ENV !== 'development') {
-      // TODO 最新情報チェック中
       getArticles()
     }
   }, [])
