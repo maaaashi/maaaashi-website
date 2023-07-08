@@ -60,8 +60,8 @@ const AboutMe = () => {
       style={{ height: 'calc(100vh - 100px) ' }}
     >
       <h2 className='mb-5 text-2xl font-bold'>About ME</h2>
-      <div style={{ height: '20000px' }}>
-        {/* <div className='h-fit'> */}
+      {/* <div style={{ height: '20000px' }}> */}
+      <div className='h-fit'>
         <div className='flex flex-col items-center justify-center gap-4 md:flex-row md:items-start md:justify-evenly'>
           <div className='avatar md:m-0'>
             <div className='w-32 rounded-full md:w-48'>

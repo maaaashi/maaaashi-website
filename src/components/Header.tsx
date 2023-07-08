@@ -126,7 +126,11 @@ const Header: FC = () => {
         <div className='avatar'>
           <div className='w-full rounded-full'>
             <a href='https://twitter.com/pg_maaaashi' target='_blank'>
-              <AiFillTwitterCircle size='30px' color='#1877f2' />
+              <AiFillTwitterCircle
+                size='30px'
+                color='#1877f2'
+                className='rounded-full bg-white hover:bg-slate-300'
+              />
             </a>
           </div>
         </div>
