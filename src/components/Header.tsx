@@ -111,7 +111,7 @@ const Header: FC = () => {
             >
               {listTheme.map((theme, index) => (
                 <li key={index} data-theme={theme} className='my-1'>
-                  <button data-act-class='border'>
+                  <button data-set-theme={theme} data-act-class='border'>
                     <span className='h-5 w-5 bg-primary'></span>
                     <span className='h-5 w-5 bg-secondary'></span>
                     <span className='h-5 w-5 bg-success'></span>
