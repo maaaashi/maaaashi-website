@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { aboutMeData } from '@/libs/about-me'
 import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
@@ -6,8 +6,10 @@ import Image from 'next/image'
 import aboutMe from '@/libs/images/rep.jpg'
 import TechStack from '@/components/TechStack'
 
+type Tech = 'frontend' | 'backend' | 'infrastructure' | 'test' | 'other'
+
 export type Stack = {
-  [key in 'frontend' | 'backend' | 'infrastructure' | 'test' | 'other']: {
+  [key in Tech]: {
     tech: string
     level: number
     isShow?: boolean
@@ -15,6 +17,8 @@ export type Stack = {
 }
 
 const AboutMe = () => {
+  const [activeTab, setActiveTab] = useState<Tech>('frontend')
+
   const stacks: Stack = {
     frontend: [
       { tech: 'HTML', level: 4 },
@@ -28,6 +32,7 @@ const AboutMe = () => {
       { tech: 'SvelteKit', level: 4 },
       { tech: 'Apollo', level: 4 },
       { tech: 'TailwindCSS', level: 4 },
+      { tech: 'Bootstrap', level: 4 },
     ],
     backend: [
       { tech: 'Ruby', level: 5, isShow: true },
@@ -51,6 +56,7 @@ const AboutMe = () => {
     ],
     other: [
       { tech: 'Git', level: 5 },
+      { tech: 'GitLab Runner', level: 3 },
       { tech: 'docker', level: 4 },
       { tech: 'docker swarm', level: 4 },
     ],
@@ -96,12 +102,73 @@ const AboutMe = () => {
         {/* <ReactMarkdown remarkPlugins={[gfm]}>{aboutMeData()}</ReactMarkdown> */}
         <div className='mt-14 border bg-base-100 p-5'>
           <h3>スキル / 得意な技術</h3>
-          <div className='flex flex-col gap-4 p-5 md:flex-row md:flex-wrap md:justify-evenly'>
-            <TechStack stacks={stacks.frontend} title='FrontEnd' />
-            <TechStack stacks={stacks.backend} title='BackEnd' />
-            <TechStack stacks={stacks.infrastructure} title='InfraStructure' />
-            <TechStack stacks={stacks.test} title='Test' />
-            <TechStack stacks={stacks.other} title='Other' />
+          <div className='tabs mt-5 justify-center'>
+            <a
+              className={`tab-bordered tab ${
+                activeTab === 'frontend' ? 'tab-active' : ''
+              }`}
+              onClick={() => {
+                setActiveTab('frontend')
+              }}
+            >
+              フロントエンド
+            </a>
+            <a
+              className={`tab-bordered tab ${
+                activeTab === 'backend' ? 'tab-active' : ''
+              }`}
+              onClick={() => {
+                setActiveTab('backend')
+              }}
+            >
+              バックエンド
+            </a>
+            <a
+              className={`tab-bordered tab ${
+                activeTab === 'infrastructure' ? 'tab-active' : ''
+              }`}
+              onClick={() => {
+                setActiveTab('infrastructure')
+              }}
+            >
+              インフラ
+            </a>
+            <a
+              className={`tab-bordered tab ${
+                activeTab === 'test' ? 'tab-active' : ''
+              }`}
+              onClick={() => {
+                setActiveTab('test')
+              }}
+            >
+              テスト
+            </a>
+            <a
+              className={`tab-bordered tab ${
+                activeTab === 'other' ? 'tab-active' : ''
+              }`}
+              onClick={() => {
+                setActiveTab('other')
+              }}
+            >
+              その他
+            </a>
+          </div>
+          <div className='w-full p-5'>
+            <TechStack
+              isShow={activeTab === 'frontend'}
+              stacks={stacks.frontend}
+            />
+            <TechStack
+              isShow={activeTab === 'backend'}
+              stacks={stacks.backend}
+            />
+            <TechStack
+              isShow={activeTab === 'infrastructure'}
+              stacks={stacks.infrastructure}
+            />
+            <TechStack isShow={activeTab === 'test'} stacks={stacks.test} />
+            <TechStack isShow={activeTab === 'other'} stacks={stacks.other} />
           </div>
         </div>
       </div>

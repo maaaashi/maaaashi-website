@@ -88,4 +88,5 @@ export const icons: { [key in string]: any } = {
   git: git,
   'docker swarm': Docker,
   rspec: rspec,
+  'gitlab runner': gitlab,
 }
