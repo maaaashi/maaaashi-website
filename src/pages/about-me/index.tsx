@@ -10,6 +10,7 @@ export type Stack = {
   [key in 'frontend' | 'backend' | 'infrastructure' | 'test' | 'other']: {
     tech: string
     level: number
+    isShow?: boolean
   }[]
 }
 
@@ -19,8 +20,8 @@ const AboutMe = () => {
       { tech: 'HTML', level: 4 },
       { tech: 'CSS', level: 3 },
       { tech: 'JavaScript', level: 4 },
-      { tech: 'TypeScript', level: 5 },
-      { tech: 'React', level: 4 },
+      { tech: 'TypeScript', level: 5, isShow: true },
+      { tech: 'React', level: 5, isShow: true },
       { tech: 'Next.js', level: 4 },
       { tech: 'Vue', level: 3 },
       { tech: 'Svelte', level: 4 },
@@ -29,10 +30,10 @@ const AboutMe = () => {
       { tech: 'TailwindCSS', level: 4 },
     ],
     backend: [
-      { tech: 'Ruby', level: 5 },
-      { tech: 'RubyOnRails', level: 5 },
+      { tech: 'Ruby', level: 5, isShow: true },
+      { tech: 'RubyOnRails', level: 5, isShow: true },
       { tech: 'mysql', level: 3 },
-      { tech: 'TypeSCript', level: 5 },
+      { tech: 'TypeScript', level: 5 },
       { tech: 'nodejs', level: 3 },
       { tech: 'Keycloak', level: 3 },
       { tech: 'Graphql', level: 4 },
@@ -51,7 +52,7 @@ const AboutMe = () => {
     other: [
       { tech: 'Git', level: 5 },
       { tech: 'docker', level: 4 },
-      { tech: 'docker swarm', level: 3 },
+      { tech: 'docker swarm', level: 4 },
     ],
   }
   return (

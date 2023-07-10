@@ -1,6 +1,6 @@
 import { Stack } from '@/pages/about-me'
 import Image from 'next/image'
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { icons } from '@/libs/images'
 
 interface Props {
@@ -27,10 +27,13 @@ const TechStack: FC<Props> = ({ title, stacks }) => {
                   />
                 </div>
               </div>
+              {stack.isShow && '★'}
               {stack.tech}
             </div>
             <progress
-              className='progress progress-secondary w-full max-w-full md:w-56'
+              className={`progress ${
+                stack.isShow ? 'progress-accent' : 'progress-secondary'
+              } w-full max-w-full md:w-56`}
               value={stack.level}
               max='5'
             ></progress>
