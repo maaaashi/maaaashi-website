@@ -284,7 +284,7 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
             <MdNavigateBefore />
             {year - 1}年
           </button>
-          <h2 className='text-2xl font-bold'>Qiita {year}年</h2>
+          <h2 className='text-2xl font-bold'>{year}年</h2>
           <button
             className='btn'
             onClick={() => {
