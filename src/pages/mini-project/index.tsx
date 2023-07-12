@@ -3,7 +3,7 @@ import MiniProject from '@/components/MiniProject'
 
 const Project = () => {
   return (
-    <div>
+    <div className='overflow-y-auto' style={{ height: 'calc(100vh - 100px) ' }}>
       <h2 className='text-2xl font-bold'>Mini Project</h2>
       <p>学習で個人的に作成したプロジェクトです。</p>
 

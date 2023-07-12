@@ -28,10 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
         }}
       ></Script>
       <div className={`${css.main} container mx-auto`}>
-        <div
-          className='bg-base-200 p-5'
-          style={{ height: 'calc(100% - 10px)' }}
-        >
+        <div className='h-full bg-base-200 p-5'>
           <Component {...pageProps} />
         </div>
       </div>
