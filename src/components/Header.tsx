@@ -135,7 +135,7 @@ const Header: FC = () => {
         <div className='dropdown dropdown-end'>
           <div tabIndex={0} className='avatar md:hidden'>
             <label className='btn-ghost btn'>
-              <BsPalette2 size='20px' className='bg-white hover:bg-slate-300' />
+              <BsPalette2 size='20px' />
             </label>
           </div>
           {themeList()}
