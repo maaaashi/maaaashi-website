@@ -1,5 +1,6 @@
 import { FC, useEffect } from 'react'
 import { AiFillTwitterCircle } from 'react-icons/ai'
+import { BsPalette2 } from 'react-icons/bs'
 import { themeChange } from 'theme-change'
 import Link from 'next/link'
 import rep from '@/libs/images/rep.jpg'
@@ -41,6 +42,27 @@ const Header: FC = () => {
     'coffee',
     'winter',
   ]
+
+  const themeList = () => {
+    return (
+      <ul
+        tabIndex={0}
+        className='dropdown-content menu rounded-box h-60 w-fit flex-nowrap overflow-y-auto bg-base-300 p-2 shadow'
+      >
+        {listTheme.map((theme, index) => (
+          <li key={index} data-theme={theme} className='my-1'>
+            <button data-set-theme={theme} data-act-class='border'>
+              <span className='h-5 w-5 bg-primary'></span>
+              <span className='h-5 w-5 bg-secondary'></span>
+              <span className='h-5 w-5 bg-success'></span>
+              <span className='h-5 w-5 bg-neutral'></span>
+              {theme.toUpperCase()}
+            </button>
+          </li>
+        ))}
+      </ul>
+    )
+  }
 
   return (
     <div className='navbar bg-base-100'>
@@ -85,6 +107,7 @@ const Header: FC = () => {
             src={rep}
             alt=''
             width='30'
+            className='hidden md:block'
             style={{ marginRight: '5px', borderRadius: '50%' }}
           />
           <h1>{"Maaaashi's Website"}</h1>
@@ -103,25 +126,19 @@ const Header: FC = () => {
           </Link>
           <div className='dropdown dropdown-end'>
             <label tabIndex={0} className='btn'>
+              <BsPalette2 size='15px' className='mr-2' />
               Theme
             </label>
-            <ul
-              tabIndex={0}
-              className='dropdown-content menu rounded-box h-60 w-fit flex-nowrap overflow-y-auto bg-base-300 p-2 shadow'
-            >
-              {listTheme.map((theme, index) => (
-                <li key={index} data-theme={theme} className='my-1'>
-                  <button data-set-theme={theme} data-act-class='border'>
-                    <span className='h-5 w-5 bg-primary'></span>
-                    <span className='h-5 w-5 bg-secondary'></span>
-                    <span className='h-5 w-5 bg-success'></span>
-                    <span className='h-5 w-5 bg-neutral'></span>
-                    {theme.toUpperCase()}
-                  </button>
-                </li>
-              ))}
-            </ul>
+            {themeList()}
           </div>
+        </div>
+        <div className='dropdown dropdown-end'>
+          <div tabIndex={0} className='avatar md:hidden'>
+            <label className='btn-ghost btn'>
+              <BsPalette2 size='20px' className='bg-white hover:bg-slate-300' />
+            </label>
+          </div>
+          {themeList()}
         </div>
         <div className='avatar'>
           <div className='w-full rounded-full'>
