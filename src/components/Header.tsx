@@ -1,10 +1,13 @@
 import { FC, useEffect } from 'react'
 import { AiFillTwitterCircle } from 'react-icons/ai'
 import { BsPalette2 } from 'react-icons/bs'
+import { MdOutlineArticle } from 'react-icons/md'
+import { GoProjectSymlink } from 'react-icons/go'
 import { themeChange } from 'theme-change'
 import Link from 'next/link'
 import rep from '@/libs/images/rep.jpg'
 import Image from 'next/image'
+import { SiAboutdotme } from 'react-icons/si'
 
 const Header: FC = () => {
   useEffect(() => {
@@ -115,18 +118,30 @@ const Header: FC = () => {
       </div>
       <div className='navbar-end w-3/5 gap-4 md:inline-flex'>
         <div className='hidden gap-4 md:inline-flex'>
-          <Link href='/about-me' className='btn-primary btn'>
+          <Link
+            href='/about-me'
+            className='btn-primary btn flex-col justify-around'
+          >
+            <SiAboutdotme size='20px' />
             About me
           </Link>
-          <Link href='/qiita' className='btn-primary btn'>
+          <Link
+            href='/qiita'
+            className='btn-primary btn flex-col justify-around'
+          >
+            <MdOutlineArticle size='20px' />
             Qiita
           </Link>
-          <Link href='/mini-project' className='btn-primary btn'>
+          <Link
+            href='/mini-project'
+            className='btn-primary btn flex-col justify-around'
+          >
+            <GoProjectSymlink size='20px' />
             Mini Project
           </Link>
           <div className='dropdown dropdown-end'>
-            <label tabIndex={0} className='btn'>
-              <BsPalette2 size='15px' className='mr-2' />
+            <label tabIndex={0} className='btn flex-col justify-around'>
+              <BsPalette2 size='15px' />
               Theme
             </label>
             {themeList()}
