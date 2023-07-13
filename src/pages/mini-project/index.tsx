@@ -1,5 +1,6 @@
 import React from 'react'
 import MiniProject from '@/components/MiniProject'
+import MiniProjectRight from '@/components/MiniProject/right'
 
 const Project = () => {
   return (
@@ -7,7 +8,7 @@ const Project = () => {
       <h2 className='text-2xl font-bold'>Mini Project</h2>
       <p>学習で個人的に作成したプロジェクトです。</p>
 
-      <div className='flex flex-wrap justify-between'>
+      <div>
         <MiniProject
           title='感想文生成ジェネレーター'
           description='設定から、感想文を自動生成するツール'
@@ -17,7 +18,7 @@ const Project = () => {
           qiita='https://qiita.com/maaaashi/items/cbc06263c51ab64e5dbe'
         />
 
-        <MiniProject
+        <MiniProjectRight
           title={`Maaaashi's website`}
           description='自分のプロフィールや投稿記事を紹介するサイト(このサイト)'
           image='website'
