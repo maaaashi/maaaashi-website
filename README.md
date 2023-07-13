@@ -1,5 +1,7 @@
 # Maaaashi's Website
 
+![Welcome Maaaashi's Website](docs/website.png)
+
 <div align="center">Github repository containing the source code for Maaaashi's Website.</div>
 
 - [Maaaashi's Website](#maaaashis-website)
