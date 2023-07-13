@@ -24,6 +24,14 @@ const Project = () => {
           href='https://maaaashi-website.mss-rep.com'
           github='https://github.com/maaaashi/maaaashi-website'
         />
+
+        <MiniProject
+          title='SpeachToTranslate'
+          description='AzureSTTを利用し、音声からテキスト変換し、DeepL翻訳をするアプリ'
+          image='stt'
+          href='https://speech-to-translate.vercel.app/'
+          github='https://github.com/maaaashi/speech_to_translate'
+        />
       </div>
     </div>
   )
