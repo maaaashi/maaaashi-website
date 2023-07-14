@@ -6,18 +6,6 @@ import Script from 'next/script'
 import { useEffect } from 'react'
 
 export default function App({ Component, pageProps }: AppProps) {
-  useEffect(() => {
-    function setVh() {
-      let vh = window.innerHeight * 0.01
-      document.documentElement.style.setProperty('--vh', `${vh}px`)
-    }
-
-    setVh()
-    window.addEventListener('resize', setVh)
-
-    return () => window.removeEventListener('resize', setVh)
-  }, [])
-
   return (
     <>
       <Header />
