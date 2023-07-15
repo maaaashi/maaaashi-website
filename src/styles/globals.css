@@ -6,6 +6,12 @@ html {
   overflow: hidden;
 }
 
+@supports (-webkit-touch-callout: none) {
+  .h-screen {
+    height: -webkit-fill-available;
+  }
+}
+
 .join {
   display: inline-flex;
   align-items: stretch;
