@@ -1,14 +1,29 @@
-import React from 'react'
+import { useEffect, useRef } from 'react'
 import MiniProject from '@/components/MiniProject'
 import MiniProjectRight from '@/components/MiniProject/right'
 
 const Project = () => {
+  const projectRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const project = projectRef.current
+    if (!project) return
+
+    project.childNodes.forEach((child, index) => {
+      if (child instanceof Element) {
+        setTimeout(() => {
+          child.classList.add('start-animation')
+        }, index * 500) // 500ms の遅延を各子要素に設けます
+      }
+    })
+  }, [])
+
   return (
     <div className='overflow-y-auto' style={{ height: 'calc(100vh - 100px) ' }}>
       <h2 className='text-2xl font-bold'>Mini Project</h2>
       <p>学習で個人的に作成したプロジェクトです。</p>
 
-      <div>
+      <div ref={projectRef}>
         <MiniProject
           title='感想文生成ジェネレーター'
           description='設定から、感想文を自動生成するツール'

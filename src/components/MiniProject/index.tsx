@@ -5,6 +5,7 @@ import open from './opinionAi.png'
 import website from './website.png'
 import stt from './stt.png'
 import Image from 'next/image'
+import css from './index.module.css'
 
 interface Props {
   title: string
@@ -30,7 +31,9 @@ const MiniProject: FC<Props> = ({
   github,
 }) => {
   return (
-    <div className='flex w-fit flex-wrap items-center justify-center gap-5 p-5'>
+    <div
+      className={`${css.project} flex w-fit flex-wrap items-center justify-center gap-5 p-5`}
+    >
       <a
         href={href}
         target='_blank'

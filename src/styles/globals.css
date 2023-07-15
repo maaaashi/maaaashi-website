@@ -85,3 +85,7 @@ html {
     transform: translateY(0px);
   }
 }
+
+.start-animation {
+  animation-play-state: running !important;
+}

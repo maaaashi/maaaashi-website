@@ -5,6 +5,7 @@ import open from './opinionAi.png'
 import website from './website.png'
 import stt from './stt.png'
 import Image from 'next/image'
+import css from './index.module.css'
 
 interface Props {
   title: string
@@ -30,7 +31,9 @@ const MiniProjectRight: FC<Props> = ({
   github,
 }) => {
   return (
-    <div className='ml-auto flex w-fit flex-wrap items-center justify-center gap-5 p-5'>
+    <div
+      className={`${css.project} ml-auto flex w-fit flex-wrap items-center justify-center gap-5 p-5`}
+    >
       <div className='w-full max-w-[14rem] text-center'>
         <h3>{title}</h3>
         <p>{description}</p>
