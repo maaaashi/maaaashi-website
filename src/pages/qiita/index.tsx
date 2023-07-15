@@ -1,14 +1,4 @@
 import React, { FC, useEffect, useState } from 'react'
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js'
-import { Bar } from 'react-chartjs-2'
 import type { GetStaticProps } from 'next'
 import { mockData } from '@/libs/mockdata'
 import Article from '@/components/Article'
@@ -17,8 +7,7 @@ import Awards from '@/components/Awards'
 import css from './index.module.css'
 import { countAndSort } from '@/libs/countAndSort'
 import Swal from 'sweetalert2'
-
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
+import Chart from '@/components/Qiita/Chart'
 
 export const options = {
   responsive: true,
@@ -332,17 +321,7 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
               />
             </div>
             <div className='divider'></div>
-            <h3 className='text-lg font-bold'>Data</h3>
-            <div className='flex w-full flex-wrap justify-evenly gap-10'>
-              <div className='w-full bg-white p-5 md:w-2/5'>
-                <h4 className='font-bold text-black'>月別投稿数</h4>
-                <Bar options={options} data={data} />
-              </div>
-              <div className='w-full bg-white p-5 md:w-2/5'>
-                <h4 className='font-bold text-black'>タグ投稿数</h4>
-                <Bar options={options} data={tag_data} />
-              </div>
-            </div>
+            <Chart articles={filteredArticles} tagCount={tagsCount} />
           </div>
         )}
       </div>

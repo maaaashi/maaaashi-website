@@ -1,5 +1,5 @@
 {
-  "name": "maaaashi-portfolio2",
+  "name": "maaaashi-website",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -29,6 +29,7 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.10.1",
     "react-markdown": "^8.0.7",
+    "recoil": "^0.7.7",
     "remark-gfm": "^3.0.1",
     "rss-parser": "^3.13.0",
     "sweetalert2": "^11.7.12",
