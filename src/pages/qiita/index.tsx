@@ -286,10 +286,7 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
           </button>
         </div>
       </div>
-      <div
-        className='overflow-y-auto py-5'
-        style={{ height: 'calc(100vh - 230px)' }}
-      >
+      <div className='overflow-y-auto py-5'>
         {filteredArticles.length === 0 ? (
           <div>投稿がありません。</div>
         ) : (

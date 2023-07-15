@@ -62,7 +62,7 @@ const AboutMe = () => {
     ],
   }
   return (
-    <div className='overflow-y-auto' style={{ height: 'calc(100vh - 100px) ' }}>
+    <div className='overflow-y-auto'>
       <h2 className='mb-5 text-2xl font-bold'>About ME</h2>
       {/* <div style={{ height: '20000px' }}> */}
       <div className='h-fit'>

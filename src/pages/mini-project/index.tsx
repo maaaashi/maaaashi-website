@@ -19,7 +19,7 @@ const Project = () => {
   }, [])
 
   return (
-    <div className='overflow-y-auto' style={{ height: 'calc(100vh - 100px) ' }}>
+    <div className='overflow-y-auto'>
       <h2 className='text-2xl font-bold'>Mini Project</h2>
       <p>学習で個人的に作成したプロジェクトです。</p>
 
