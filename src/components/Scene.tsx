@@ -57,7 +57,7 @@ function Scene() {
       link: 'qiita',
       size: size.qiita,
       boxColor: {
-        normal: 'translate',
+        normal: 'white',
         hover: '#1fac1f',
       },
     },
@@ -67,7 +67,7 @@ function Scene() {
       link: 'about-me',
       size: size.about,
       boxColor: {
-        normal: '#translate',
+        normal: 'white',
         hover: '#af8b16',
       },
     },
@@ -77,7 +77,7 @@ function Scene() {
       link: 'mini-project',
       size: size.project,
       boxColor: {
-        normal: '#translate',
+        normal: 'white',
         hover: '#2667d7',
       },
     },

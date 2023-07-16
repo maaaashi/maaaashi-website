@@ -40,6 +40,7 @@ import awsCDK from '@/libs/images/icons/aws-cdk.png'
 import jest from '@/libs/images/icons/jest.png'
 import git from '@/libs/images/icons/git.png'
 import rspec from '@/libs/images/icons/rspec.png'
+import bootstrap from '@/libs/images/icons/bootstrap.png'
 
 export const icons: { [key in string]: any } = {
   rubyonrails: RubyOnRails,
@@ -89,4 +90,5 @@ export const icons: { [key in string]: any } = {
   'docker swarm': Docker,
   rspec: rspec,
   'gitlab runner': gitlab,
+  bootstrap: bootstrap,
 }
