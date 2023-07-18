@@ -83,7 +83,7 @@ function Scene() {
     },
   }
   return (
-    <Canvas>
+    <Canvas className='webkit-fill-available'>
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} intensity={1} />
       <PerspectiveCamera makeDefault position={[0, 0, 5]} />

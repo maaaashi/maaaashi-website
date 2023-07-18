@@ -8,7 +8,16 @@ html {
 
 @supports (-webkit-touch-callout: none) {
   .h-screen {
-    height: -webkit-fill-available;
+    height: -webkit-fill-available !important;
+  }
+  .h-full {
+    height: -webkit-fill-available !important;
+  }
+  .webkit-fill-available {
+    height: -webkit-fill-available !important;
+  }
+  .webkit-fill-available * {
+    height: -webkit-fill-available !important;
   }
 }
 
