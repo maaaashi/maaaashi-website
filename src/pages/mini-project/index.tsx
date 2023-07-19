@@ -19,7 +19,7 @@ const Project = () => {
   }, [])
 
   return (
-    <div className='overflow-y-auto'>
+    <div>
       <h2 className='text-2xl font-bold'>Mini Project</h2>
       <p>学習で個人的に作成したプロジェクトです。</p>
 

@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div className='flex h-screen flex-col overflow-y-auto'>
+    <div className='flex h-screen flex-col overflow-y-hidden'>
       <Head>
         <title>{"Maaaashi's Website"}</title>
         <link rel='icon' href='/favicon.ico' />
@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <Header />
       </div>
       <div className='container mx-auto flex-1 p-5'>
-        <div className='h-full bg-base-200 p-5'>
+        <div className='h-full overflow-y-auto bg-base-200 p-5'>
           <Component {...pageProps} />
         </div>
       </div>
