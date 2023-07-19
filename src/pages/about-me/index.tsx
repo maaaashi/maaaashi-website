@@ -5,6 +5,7 @@ import gfm from 'remark-gfm'
 import Image from 'next/image'
 import aboutMe from '@/libs/images/rep.jpg'
 import TechStack from '@/components/TechStack'
+import TabButton from '@/components/TabButton'
 
 type Tech = 'frontend' | 'backend' | 'infrastructure' | 'test' | 'other'
 
@@ -98,60 +99,40 @@ const AboutMe = () => {
         </div>
         {/* <ReactMarkdown remarkPlugins={[gfm]}>{aboutMeData()}</ReactMarkdown> */}
         <div className='mt-14 border bg-base-100 p-5'>
-          <h3>スキル / 得意な技術</h3>
-          <div className='tabs mt-5 justify-center'>
-            <a
-              className={`tab-bordered tab ${
-                activeTab === 'frontend' ? 'tab-active' : ''
-              }`}
-              onClick={() => {
-                setActiveTab('frontend')
-              }}
-            >
-              フロントエンド
-            </a>
-            <a
-              className={`tab-bordered tab ${
-                activeTab === 'backend' ? 'tab-active' : ''
-              }`}
-              onClick={() => {
-                setActiveTab('backend')
-              }}
-            >
-              バックエンド
-            </a>
-            <a
-              className={`tab-bordered tab ${
-                activeTab === 'infrastructure' ? 'tab-active' : ''
-              }`}
-              onClick={() => {
-                setActiveTab('infrastructure')
-              }}
-            >
-              インフラ
-            </a>
-            <a
-              className={`tab-bordered tab ${
-                activeTab === 'test' ? 'tab-active' : ''
-              }`}
-              onClick={() => {
-                setActiveTab('test')
-              }}
-            >
-              テスト
-            </a>
-            <a
-              className={`tab-bordered tab ${
-                activeTab === 'other' ? 'tab-active' : ''
-              }`}
-              onClick={() => {
-                setActiveTab('other')
-              }}
-            >
-              その他
-            </a>
+          <h3 className='text-lg font-bold'>スキル / 得意な技術</h3>
+          <div className='btn-group mt-3 w-full justify-center px-5'>
+            <TabButton
+              isActive={activeTab === 'frontend'}
+              clickMethod={setActiveTab}
+              setTab='frontend'
+              title='フロントエンド'
+            />
+            <TabButton
+              isActive={activeTab === 'backend'}
+              clickMethod={setActiveTab}
+              setTab='backend'
+              title='バックエンド'
+            />
+            <TabButton
+              isActive={activeTab === 'infrastructure'}
+              clickMethod={setActiveTab}
+              setTab='infrastructure'
+              title='インフラ'
+            />
+            <TabButton
+              isActive={activeTab === 'test'}
+              clickMethod={setActiveTab}
+              setTab='test'
+              title='テスト'
+            />
+            <TabButton
+              isActive={activeTab === 'other'}
+              clickMethod={setActiveTab}
+              setTab='other'
+              title='その他'
+            />
           </div>
-          <div className='w-full p-5'>
+          <div className='w-full p-5 pt-0'>
             <TechStack
               isShow={activeTab === 'frontend'}
               stacks={stacks.frontend}
