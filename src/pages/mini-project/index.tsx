@@ -13,7 +13,7 @@ const Project = () => {
       if (child instanceof Element) {
         setTimeout(() => {
           child.classList.add('start-animation')
-        }, index * 500) // 500ms の遅延を各子要素に設けます
+        }, index * 500)
       }
     })
   }, [])
@@ -23,7 +23,7 @@ const Project = () => {
       <h2 className='text-2xl font-bold'>Mini Project</h2>
       <p>学習で個人的に作成したプロジェクトです。</p>
 
-      <div ref={projectRef}>
+      <div ref={projectRef} className='hidden md:block'>
         <MiniProject
           title='感想文生成ジェネレーター'
           description='設定から、感想文を自動生成するツール'
@@ -42,6 +42,32 @@ const Project = () => {
         />
 
         <MiniProject
+          title='SpeachToTranslate'
+          description='AzureSTTを利用し、音声からテキスト変換し、DeepL翻訳をするアプリ'
+          image='stt'
+          href='https://speech-to-translate.vercel.app/'
+          github='https://github.com/maaaashi/speech_to_translate'
+        />
+      </div>
+      <div className='block md:hidden'>
+        <MiniProjectRight
+          title='感想文生成ジェネレーター'
+          description='設定から、感想文を自動生成するツール'
+          image='open'
+          href='https://opinion-ai.vercel.app/'
+          github='https://github.com/maaaashi/opinion-ai'
+          qiita='https://qiita.com/maaaashi/items/cbc06263c51ab64e5dbe'
+        />
+
+        <MiniProjectRight
+          title={`Maaaashi's website`}
+          description='自分のプロフィールや投稿記事を紹介するサイト(このサイト)'
+          image='website'
+          href='https://maaaashi-website.mss-rep.com'
+          github='https://github.com/maaaashi/maaaashi-website'
+        />
+
+        <MiniProjectRight
           title='SpeachToTranslate'
           description='AzureSTTを利用し、音声からテキスト変換し、DeepL翻訳をするアプリ'
           image='stt'
