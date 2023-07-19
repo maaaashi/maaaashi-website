@@ -104,3 +104,7 @@ html {
 .start-animation {
   animation-play-state: running !important;
 }
+
+.\[\&_svg\]\:visible .check {
+  visibility: visible;
+}

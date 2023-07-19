@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react'
-import { AiFillTwitterCircle } from 'react-icons/ai'
+import { AiFillTwitterCircle, AiOutlineCheck } from 'react-icons/ai'
 import { BsPalette2 } from 'react-icons/bs'
 import { MdOutlineArticle } from 'react-icons/md'
 import { GoProjectSymlink } from 'react-icons/go'
@@ -50,16 +50,23 @@ const Header: FC = () => {
     return (
       <ul
         tabIndex={0}
-        className='dropdown-content menu rounded-box h-60 w-fit flex-nowrap overflow-y-auto bg-base-300 p-2 shadow'
+        className='dropdown-content menu rounded-box h-[70vh] max-h-96 w-fit flex-nowrap overflow-y-auto bg-base-300 p-2 shadow'
       >
         {listTheme.map((theme, index) => (
-          <li key={index} data-theme={theme} className='my-1'>
-            <button data-set-theme={theme} data-act-class='border'>
-              <span className='h-5 w-5 bg-primary'></span>
-              <span className='h-5 w-5 bg-secondary'></span>
-              <span className='h-5 w-5 bg-success'></span>
-              <span className='h-5 w-5 bg-neutral'></span>
+          <li key={index} data-theme={theme} className='my-1 bg-transparent'>
+            <button
+              className='flex justify-between rounded-lg bg-base-100'
+              data-set-theme={theme}
+              data-act-class='[&_svg]:visible'
+            >
+              <AiOutlineCheck className='check invisible' />
               {theme.toUpperCase()}
+              <div className='flex gap-1'>
+                <span className='inline-block h-5 w-3 rounded-full bg-primary'></span>
+                <span className='inline-block h-5 w-3 rounded-full bg-secondary'></span>
+                <span className='inline-block h-5 w-3 rounded-full bg-success'></span>
+                <span className='inline-block h-5 w-3 rounded-full bg-neutral'></span>
+              </div>
             </button>
           </li>
         ))}
@@ -139,7 +146,7 @@ const Header: FC = () => {
             <GoProjectSymlink size='20px' />
             Mini Project
           </Link>
-          <div className='dropdown dropdown-end'>
+          <div className='dropdown-end dropdown'>
             <label tabIndex={0} className='btn flex-col justify-around'>
               <BsPalette2 size='15px' />
               Theme
@@ -147,7 +154,7 @@ const Header: FC = () => {
             {themeList()}
           </div>
         </div>
-        <div className='dropdown dropdown-end'>
+        <div className='dropdown-end dropdown'>
           <div tabIndex={0} className='avatar md:hidden'>
             <label className='btn-ghost btn'>
               <BsPalette2 size='20px' />
