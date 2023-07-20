@@ -20,6 +20,21 @@ export type Stack = {
 const AboutMe = () => {
   const [activeTab, setActiveTab] = useState<Tech>('frontend')
 
+  const activeTabToTitle = () => {
+    switch (activeTab) {
+      case 'frontend':
+        return 'フロントエンド'
+      case 'backend':
+        return 'バックエンd'
+      case 'infrastructure':
+        return 'インフラ'
+      case 'test':
+        return 'テスト'
+      case 'other':
+        return 'その他'
+    }
+  }
+
   const stacks: Stack = {
     frontend: [
       { tech: 'HTML', level: 4 },
@@ -100,7 +115,7 @@ const AboutMe = () => {
         {/* <ReactMarkdown remarkPlugins={[gfm]}>{aboutMeData()}</ReactMarkdown> */}
         <div className='mt-14 border bg-base-100 p-5'>
           <h3 className='text-lg font-bold'>スキル / 得意な技術</h3>
-          <div className='btn-group mt-3 w-full justify-center px-5'>
+          <div className='btn-group mt-3 hidden w-full justify-center px-5 md:inline-flex'>
             <TabButton
               isActive={activeTab === 'frontend'}
               clickMethod={setActiveTab}
@@ -131,6 +146,68 @@ const AboutMe = () => {
               setTab='other'
               title='その他'
             />
+          </div>
+          <div className='dropdown-end dropdown flex justify-end md:hidden'>
+            <label tabIndex={0} className='btn-outline btn-accent btn m-1'>
+              {activeTabToTitle()}
+            </label>
+            <ul
+              tabIndex={0}
+              className='dropdown-content menu rounded-box z-[1] w-52 bg-base-100 p-2 shadow'
+            >
+              <li>
+                <a
+                  onClick={() => {
+                    setActiveTab('frontend')
+                  }}
+                  className={`${activeTab === 'frontend' ? 'active' : ''}`}
+                >
+                  フロントエンド
+                </a>
+              </li>
+              <li>
+                <a
+                  onClick={() => {
+                    setActiveTab('backend')
+                  }}
+                  className={`${activeTab === 'backend' ? 'active' : ''}`}
+                >
+                  バックエンド
+                </a>
+              </li>
+              <li>
+                <a
+                  onClick={() => {
+                    setActiveTab('infrastructure')
+                  }}
+                  className={`${
+                    activeTab === 'infrastructure' ? 'active' : ''
+                  }`}
+                >
+                  インフラ
+                </a>
+              </li>
+              <li>
+                <a
+                  onClick={() => {
+                    setActiveTab('test')
+                  }}
+                  className={`${activeTab === 'test' ? 'active' : ''}`}
+                >
+                  テスト
+                </a>
+              </li>
+              <li>
+                <a
+                  onClick={() => {
+                    setActiveTab('other')
+                  }}
+                  className={`${activeTab === 'other' ? 'active' : ''}`}
+                >
+                  その他
+                </a>
+              </li>
+            </ul>
           </div>
           <div className='w-full p-5 pt-0'>
             <TechStack
