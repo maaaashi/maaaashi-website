@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { aboutMeData } from '@/libs/about-me'
 import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
@@ -9,6 +9,7 @@ import TabButton from '@/components/TabButton'
 import List from '@/components/TabButton/List'
 import { BiSolidDownArrow } from 'react-icons/bi'
 import Tab from '@/components/TabButton/Tab'
+import ChatBubble from '@/components/ChatBubble'
 
 type Tech = 'frontend' | 'backend' | 'infrastructure' | 'test' | 'other'
 
@@ -80,40 +81,41 @@ const AboutMe = () => {
       { tech: 'docker swarm', level: 4 },
     ],
   }
+
+  const chatsRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const project = chatsRef.current
+    if (!project) return
+
+    project.childNodes.forEach((child, index) => {
+      if (child instanceof Element) {
+        setTimeout(() => {
+          child.classList.add('start-animation')
+        }, index * 1000)
+      }
+    })
+  }, [])
+
   return (
     <div className='overflow-y-auto'>
       <h2 className='mb-5 text-2xl font-bold'>About ME</h2>
       {/* <div style={{ height: '20000px' }}> */}
       <div className='h-fit'>
-        <div className='flex flex-col items-center justify-center gap-4 md:flex-row md:items-start md:justify-evenly'>
-          <div className='avatar md:m-0'>
-            <div className='w-32 rounded-full md:w-48'>
-              <Image src={aboutMe} alt='大岡正志' />
-            </div>
-          </div>
-          <div className='w-72 rounded-md bg-base-100 p-3 md:w-96'>
-            <p>
-              <span className='font-bold'>名前：</span>
-              大岡正志
-            </p>
-            <p className='my-2'>
-              <span className='font-bold'>出身：</span>
-              東京
-            </p>
-            <p className='my-2'>
-              <span className='font-bold'>好きなもの：</span>
-              アジャイル開発・マイクロサービス
-            </p>
-            <p className='my-2'>
-              <span className='font-bold'>現在：</span>
-              佐賀県のIT企業に就職し、都内で{new Date().getFullYear() - 2020}
-              年間Webアプリケーションエンジニアとして働いています。
-            </p>
-            <p className='my-2'>
-              <span className='font-bold'>資格：</span>
-              AWS Solution Architect Associate
-            </p>
-          </div>
+        <div ref={chatsRef}>
+          <ChatBubble title='名前' content='大岡正志' />
+          <ChatBubble title='出身' content='東京' />
+          <ChatBubble
+            title='好きなもの'
+            content='アジャイル開発・マイクロサービス'
+          />
+          <ChatBubble
+            title='現在'
+            content={`佐賀県のIT企業に就職し、都内で${
+              new Date().getFullYear() - 2020
+            }年間Webアプリケーションエンジニアとして働いています。`}
+          />
+          <ChatBubble title='資格' content='AWS Solution Architect Associate' />
         </div>
         {/* <ReactMarkdown remarkPlugins={[gfm]}>{aboutMeData()}</ReactMarkdown> */}
         <div className='mt-14 border bg-base-100 p-5'>
