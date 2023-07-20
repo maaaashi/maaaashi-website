@@ -6,6 +6,9 @@ import Image from 'next/image'
 import aboutMe from '@/libs/images/rep.jpg'
 import TechStack from '@/components/TechStack'
 import TabButton from '@/components/TabButton'
+import List from '@/components/TabButton/List'
+import { BiSolidDownArrow } from 'react-icons/bi'
+import Tab from '@/components/TabButton/Tab'
 
 type Tech = 'frontend' | 'backend' | 'infrastructure' | 'test' | 'other'
 
@@ -25,7 +28,7 @@ const AboutMe = () => {
       case 'frontend':
         return 'フロントエンド'
       case 'backend':
-        return 'バックエンd'
+        return 'バックエンド'
       case 'infrastructure':
         return 'インフラ'
       case 'test':
@@ -115,7 +118,7 @@ const AboutMe = () => {
         {/* <ReactMarkdown remarkPlugins={[gfm]}>{aboutMeData()}</ReactMarkdown> */}
         <div className='mt-14 border bg-base-100 p-5'>
           <h3 className='text-lg font-bold'>スキル / 得意な技術</h3>
-          <div className='btn-group mt-3 hidden w-full justify-center px-5 md:inline-flex'>
+          {/* <div className='btn-group mt-3 hidden w-full justify-center px-5 md:inline-flex'>
             <TabButton
               isActive={activeTab === 'frontend'}
               clickMethod={setActiveTab}
@@ -146,67 +149,84 @@ const AboutMe = () => {
               setTab='other'
               title='その他'
             />
+          </div> */}
+          <div className='tabs mt-5 hidden w-full justify-center px-5 md:flex'>
+            <Tab
+              isActive={activeTab === 'frontend'}
+              onClick={setActiveTab}
+              title='フロントエンド'
+              setTab='frontend'
+            />
+            <Tab
+              isActive={activeTab === 'backend'}
+              onClick={setActiveTab}
+              title='バックエンド'
+              setTab='backend'
+            />
+            <Tab
+              isActive={activeTab === 'infrastructure'}
+              onClick={setActiveTab}
+              title='インフラ'
+              setTab='infrastructure'
+            />
+            <Tab
+              isActive={activeTab === 'test'}
+              onClick={setActiveTab}
+              title='テスト'
+              setTab='test'
+            />
+            <Tab
+              isActive={activeTab === 'other'}
+              onClick={setActiveTab}
+              title='その他'
+              setTab='other'
+            />
           </div>
           <div className='dropdown-end dropdown flex justify-end md:hidden'>
             <label tabIndex={0} className='btn-accent btn my-3 mr-5'>
               {activeTabToTitle()}
+              <BiSolidDownArrow />
             </label>
             <ul
               tabIndex={0}
               className='dropdown-content menu rounded-box z-[1] w-52 bg-base-100 p-2 shadow'
             >
-              <li>
-                <a
-                  onClick={() => {
-                    setActiveTab('frontend')
-                  }}
-                  className={`${activeTab === 'frontend' ? 'active' : ''}`}
-                >
-                  フロントエンド
-                </a>
-              </li>
-              <li>
-                <a
-                  onClick={() => {
-                    setActiveTab('backend')
-                  }}
-                  className={`${activeTab === 'backend' ? 'active' : ''}`}
-                >
-                  バックエンド
-                </a>
-              </li>
-              <li>
-                <a
-                  onClick={() => {
-                    setActiveTab('infrastructure')
-                  }}
-                  className={`${
-                    activeTab === 'infrastructure' ? 'active' : ''
-                  }`}
-                >
-                  インフラ
-                </a>
-              </li>
-              <li>
-                <a
-                  onClick={() => {
-                    setActiveTab('test')
-                  }}
-                  className={`${activeTab === 'test' ? 'active' : ''}`}
-                >
-                  テスト
-                </a>
-              </li>
-              <li>
-                <a
-                  onClick={() => {
-                    setActiveTab('other')
-                  }}
-                  className={`${activeTab === 'other' ? 'active' : ''}`}
-                >
-                  その他
-                </a>
-              </li>
+              <List
+                isActive={activeTab === 'frontend'}
+                onClick={setActiveTab}
+                title='フロントエンド'
+                setTab='frontend'
+              />
+              <List
+                isActive={activeTab === 'backend'}
+                onClick={setActiveTab}
+                title='バックエンド'
+                setTab='backend'
+              />
+              <List
+                isActive={activeTab === 'infrastructure'}
+                onClick={setActiveTab}
+                title='インフラ'
+                setTab='infrastructure'
+              />
+              <List
+                isActive={activeTab === 'frontend'}
+                onClick={setActiveTab}
+                title='フロントエンド'
+                setTab='frontend'
+              />
+              <List
+                isActive={activeTab === 'test'}
+                onClick={setActiveTab}
+                title='テスト'
+                setTab='test'
+              />
+              <List
+                isActive={activeTab === 'other'}
+                onClick={setActiveTab}
+                title='その他'
+                setTab='other'
+              />
             </ul>
           </div>
           <div className='w-full p-5 pt-0'>
