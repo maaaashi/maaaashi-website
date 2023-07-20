@@ -148,7 +148,7 @@ const AboutMe = () => {
             />
           </div>
           <div className='dropdown-end dropdown flex justify-end md:hidden'>
-            <label tabIndex={0} className='btn-accent btn m-1'>
+            <label tabIndex={0} className='btn-accent btn my-3 mr-5'>
               {activeTabToTitle()}
             </label>
             <ul
