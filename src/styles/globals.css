@@ -108,3 +108,12 @@ html {
 .\[\&_svg\]\:visible .check {
   visibility: visible;
 }
+
+.carousel {
+  scrollbar-width: block;
+  -ms-overflow-style: auto;
+}
+
+.carousel::-webkit-scrollbar {
+  display: block !important;
+}
