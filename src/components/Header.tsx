@@ -80,7 +80,7 @@ const Header: FC = () => {
 
   return (
     <div className='navbar bg-base-100'>
-      <div className='navbar-start w-2/5'>
+      <div className='navbar-start w-[22rem]'>
         <div className='dropdown'>
           <label tabIndex={0} className='btn-ghost btn md:hidden'>
             <svg
@@ -111,6 +111,16 @@ const Header: FC = () => {
             <li>
               <Link href='/mini-project'>Mini Project</Link>
             </li>
+            <li>
+              <a target='_blank' href='https://twitter.com/pg_maaaashi'>
+                Twitter
+              </a>
+            </li>
+            <li>
+              <a target='_blank' href='https://github.com/maaaashi'>
+                GitHub
+              </a>
+            </li>
           </ul>
         </div>
         <Link
@@ -127,7 +137,7 @@ const Header: FC = () => {
           <h1>{"Maaaashi's Website"}</h1>
         </Link>
       </div>
-      <div className='navbar-end w-3/5 gap-4 md:inline-flex'>
+      <div className='navbar-end w-full gap-4 md:inline-flex'>
         <div className='hidden gap-4 md:inline-flex'>
           <Link
             href='/about-me'
@@ -166,7 +176,7 @@ const Header: FC = () => {
           </div>
           {themeList()}
         </div>
-        <div className='avatar'>
+        <div className='avatar hidden md:block'>
           <div className='w-full rounded-full'>
             <a href='https://twitter.com/pg_maaaashi' target='_blank'>
               <AiFillTwitterCircle
@@ -177,7 +187,7 @@ const Header: FC = () => {
             </a>
           </div>
         </div>
-        <div className='avatar mr-3'>
+        <div className='avatar mr-3 hidden md:block'>
           <div className='w-full rounded-full'>
             <a href='https://github.com/maaaashi' target='_blank'>
               <AiFillGithub
