@@ -1,5 +1,9 @@
 import { FC, useEffect } from 'react'
-import { AiFillTwitterCircle, AiOutlineCheck } from 'react-icons/ai'
+import {
+  AiFillGithub,
+  AiFillTwitterCircle,
+  AiOutlineCheck,
+} from 'react-icons/ai'
 import { BsPalette2 } from 'react-icons/bs'
 import { MdOutlineArticle } from 'react-icons/md'
 import { GoProjectSymlink } from 'react-icons/go'
@@ -168,6 +172,16 @@ const Header: FC = () => {
               <AiFillTwitterCircle
                 size='30px'
                 color='#1877f2'
+                className='rounded-full bg-white hover:bg-slate-300'
+              />
+            </a>
+          </div>
+        </div>
+        <div className='avatar mr-3'>
+          <div className='w-full rounded-full'>
+            <a href='https://github.com/maaaashi' target='_blank'>
+              <AiFillGithub
+                size='30px'
                 className='rounded-full bg-white hover:bg-slate-300'
               />
             </a>
