@@ -192,6 +192,7 @@ const Header: FC = () => {
             <a href='https://github.com/maaaashi' target='_blank'>
               <AiFillGithub
                 size='30px'
+                color='#111'
                 className='rounded-full bg-white hover:bg-slate-300'
               />
             </a>
