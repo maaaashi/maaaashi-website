@@ -22,7 +22,7 @@ const TechStack: FC<Props> = ({ stacks, title }) => {
             >
               <div className='flex flex-col items-center gap-2 md:flex-row'>
                 <div className='avatar md:m-0'>
-                  <div className='w-5 rounded-full'>
+                  <div className='w-5 rounded'>
                     <Image
                       src={icons[stack.tech.toLocaleLowerCase()]}
                       alt={stack.tech}
