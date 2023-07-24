@@ -22,23 +22,6 @@ export type Stack = {
 }
 
 const AboutMe = () => {
-  const [activeTab, setActiveTab] = useState<Tech>('frontend')
-
-  const activeTabToTitle = () => {
-    switch (activeTab) {
-      case 'frontend':
-        return 'フロントエンド'
-      case 'backend':
-        return 'バックエンド'
-      case 'infrastructure':
-        return 'インフラ'
-      case 'test':
-        return 'テスト'
-      case 'other':
-        return 'その他'
-    }
-  }
-
   const stacks: Stack = {
     frontend: [
       { tech: 'HTML', level: 4 },
@@ -119,133 +102,13 @@ const AboutMe = () => {
         </div>
         {/* <ReactMarkdown remarkPlugins={[gfm]}>{aboutMeData()}</ReactMarkdown> */}
         <div className='mt-14 border bg-base-100 p-5'>
-          <h3 className='text-lg font-bold'>スキル / 得意な技術</h3>
-          {/* <div className='btn-group mt-3 hidden w-full justify-center px-5 md:inline-flex'>
-            <TabButton
-              isActive={activeTab === 'frontend'}
-              clickMethod={setActiveTab}
-              setTab='frontend'
-              title='フロントエンド'
-            />
-            <TabButton
-              isActive={activeTab === 'backend'}
-              clickMethod={setActiveTab}
-              setTab='backend'
-              title='バックエンド'
-            />
-            <TabButton
-              isActive={activeTab === 'infrastructure'}
-              clickMethod={setActiveTab}
-              setTab='infrastructure'
-              title='インフラ'
-            />
-            <TabButton
-              isActive={activeTab === 'test'}
-              clickMethod={setActiveTab}
-              setTab='test'
-              title='テスト'
-            />
-            <TabButton
-              isActive={activeTab === 'other'}
-              clickMethod={setActiveTab}
-              setTab='other'
-              title='その他'
-            />
-          </div> */}
-          <div className='tabs mt-5 hidden w-full justify-center px-5 md:flex'>
-            <Tab
-              isActive={activeTab === 'frontend'}
-              onClick={setActiveTab}
-              title='フロントエンド'
-              setTab='frontend'
-            />
-            <Tab
-              isActive={activeTab === 'backend'}
-              onClick={setActiveTab}
-              title='バックエンド'
-              setTab='backend'
-            />
-            <Tab
-              isActive={activeTab === 'infrastructure'}
-              onClick={setActiveTab}
-              title='インフラ'
-              setTab='infrastructure'
-            />
-            <Tab
-              isActive={activeTab === 'test'}
-              onClick={setActiveTab}
-              title='テスト'
-              setTab='test'
-            />
-            <Tab
-              isActive={activeTab === 'other'}
-              onClick={setActiveTab}
-              title='その他'
-              setTab='other'
-            />
-          </div>
-          <div className='dropdown-end dropdown flex justify-end md:hidden'>
-            <label tabIndex={0} className='btn-accent btn my-3 mr-5'>
-              {activeTabToTitle()}
-              <BiSolidDownArrow />
-            </label>
-            <ul
-              tabIndex={0}
-              className='dropdown-content menu rounded-box z-[1] w-52 bg-base-100 p-2 shadow'
-            >
-              <List
-                isActive={activeTab === 'frontend'}
-                onClick={setActiveTab}
-                title='フロントエンド'
-                setTab='frontend'
-              />
-              <List
-                isActive={activeTab === 'backend'}
-                onClick={setActiveTab}
-                title='バックエンド'
-                setTab='backend'
-              />
-              <List
-                isActive={activeTab === 'infrastructure'}
-                onClick={setActiveTab}
-                title='インフラ'
-                setTab='infrastructure'
-              />
-              <List
-                isActive={activeTab === 'frontend'}
-                onClick={setActiveTab}
-                title='フロントエンド'
-                setTab='frontend'
-              />
-              <List
-                isActive={activeTab === 'test'}
-                onClick={setActiveTab}
-                title='テスト'
-                setTab='test'
-              />
-              <List
-                isActive={activeTab === 'other'}
-                onClick={setActiveTab}
-                title='その他'
-                setTab='other'
-              />
-            </ul>
-          </div>
+          <h3 className='mb-3 text-lg font-bold'>スキル / 得意な技術</h3>
           <div className='w-full p-5 pt-0'>
-            <TechStack
-              isShow={activeTab === 'frontend'}
-              stacks={stacks.frontend}
-            />
-            <TechStack
-              isShow={activeTab === 'backend'}
-              stacks={stacks.backend}
-            />
-            <TechStack
-              isShow={activeTab === 'infrastructure'}
-              stacks={stacks.infrastructure}
-            />
-            <TechStack isShow={activeTab === 'test'} stacks={stacks.test} />
-            <TechStack isShow={activeTab === 'other'} stacks={stacks.other} />
+            <TechStack stacks={stacks.frontend.sort()} title='フロントエンド' />
+            <TechStack stacks={stacks.backend} title='バックエンド' />
+            <TechStack stacks={stacks.infrastructure} title='インフラ' />
+            <TechStack stacks={stacks.test} title='テスト' />
+            <TechStack stacks={stacks.other} title='その他' />
           </div>
         </div>
       </div>
