@@ -25,16 +25,33 @@ const TechStack: FC<Props> = ({ stacks, isShow }) => {
                   />
                 </div>
               </div>
-              {stack.isShow && '★'}
               {stack.tech}
             </div>
-            <progress
-              className={`progress ${
-                stack.isShow ? 'progress-accent' : 'progress-secondary'
-              }`}
-              value={stack.level}
-              max='5'
-            ></progress>
+            <div className='md:hidden'>
+              <progress
+                className={`progress ${
+                  stack.isShow ? 'progress-accent' : 'progress-secondary'
+                }`}
+                value={stack.level}
+                max='5'
+              ></progress>
+            </div>
+            <div className='rating hidden md:block'>
+              {[...Array(5)].map((_, index) => {
+                return (
+                  <input
+                    type='radio'
+                    key={index}
+                    name={stack.tech}
+                    checked={stack.level === index + 1}
+                    className={`mask mask-star-2 ${
+                      stack.isShow ? 'bg-accent' : 'bg-info'
+                    }`}
+                    disabled
+                  />
+                )
+              })}
+            </div>
           </div>
         )
       })}
