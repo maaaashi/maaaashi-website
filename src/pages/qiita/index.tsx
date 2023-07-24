@@ -1,34 +1,27 @@
-import React, { FC, useEffect, useState } from 'react'
-import type { GetStaticProps } from 'next'
-import { mockData } from '@/libs/mockdata'
 import Article from '@/components/Article'
-import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md'
 import Awards from '@/components/Awards'
-import css from './index.module.css'
-import { countAndSort } from '@/libs/countAndSort'
-import Swal from 'sweetalert2'
 import Chart from '@/components/Qiita/Chart'
-
-export const options = {
-  responsive: true,
-}
-
-const labels = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec',
-]
+import { mockData } from '@/libs/mockdata'
+import { GetStaticProps } from 'next'
+import { FC, useEffect, useState } from 'react'
+import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md'
+import Swal from 'sweetalert2'
 
 export interface QiitaResponse {
+  rendered_body: string
+  body: string
+  comments_count: number
+  created_at: string
+  reactions_count: number
+  likes_count: number
+  stocks_count: number
+  tags: { name: string; versions: any[] }[]
+  title: string
+  url: string
+  page_views_count: number
+}
+
+export interface QiitaConvertResponse {
   rendered_body: string
   body: string
   comments_count: number
@@ -46,61 +39,60 @@ type Props = {
   articles: QiitaResponse[]
 }
 
-const convertArticles = (articles: any[]): QiitaResponse[] => {
+const convertArticles = (articles: QiitaResponse[]): QiitaConvertResponse[] => {
   return articles.map((article) => {
     return {
-      rendered_body: article.rendered_body,
-      body: article.body,
-      comments_count: article.comments_count,
+      ...article,
       created_at: new Date(article.created_at),
-      likes_count: article.likes_count,
-      reactions_count: article.reactions_count,
-      stocks_count: article.stocks_count,
-      tags: article.tags,
-      title: article.title,
-      url: article.url,
-      page_views_count: article.page_views_count,
     }
   })
 }
 
-const filterArticles = (articles: QiitaResponse[], year: number) => {
-  return articles
-    .filter((article) => {
-      return year === article.created_at.getFullYear()
-    })
-    .sort((a, b) => a.created_at.getTime() - b.created_at.getTime())
+const sortCreatedAt = (
+  { created_at: a_created_at }: QiitaConvertResponse,
+  { created_at: b_craeted_at }: QiitaConvertResponse
+) => {
+  if (a_created_at.getTime() < b_craeted_at.getTime()) {
+    return 1
+  }
+  return -1
 }
-
-const Toast = Swal.mixin({
-  toast: true,
-  position: 'top-end',
-  showConfirmButton: false,
-  showCloseButton: false,
-  showCancelButton: false,
-  timer: 2000,
-  timerProgressBar: false,
-})
 
 const Qiita: FC<Props> = ({ articles: originalArticles }) => {
   const [year, setYear] = useState(new Date().getFullYear())
   const [page, setPage] = useState(1)
-  const [articles, setArticles] = useState<QiitaResponse[]>(
-    convertArticles(originalArticles)
-  )
-  const [filteredArticles, setFilterArticles] = useState(
-    filterArticles(articles, year)
-  )
-  const [tagsCount, setTagsCount] = useState<{ [key in string]: number }[]>([])
+  const filterArticles = (articles: QiitaConvertResponse[]) =>
+    articles
+      .filter((arti) => arti.created_at.getFullYear() === year)
+      .sort(sortCreatedAt)
+
+  const [articlesDataSouce, setArticlesDataSource] = useState<
+    QiitaConvertResponse[]
+  >(convertArticles(originalArticles))
 
   const getArticles = async () => {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      showCloseButton: false,
+      showCancelButton: false,
+      timer: 1000,
+      timerProgressBar: false,
+    })
+
     Toast.fire({
       icon: 'info',
       title: '最新データを取得します。',
     })
+
     const response = await fetch('/api/getArticles')
     const json = await response.json()
-    setArticles(convertArticles(json))
+
+    if (articlesDataSouce.length !== convertArticles(json).length) {
+      setArticlesDataSource(convertArticles(json))
+    }
+
     Toast.fire({
       icon: 'success',
       title: '更新が完了しました。',
@@ -108,52 +100,10 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
   }
 
   useEffect(() => {
-    setFilterArticles(filterArticles(articles, year))
-  }, [articles, year])
-
-  useEffect(() => {
-    const tags = filteredArticles
-      .map((article) => {
-        return article.tags.map((tag) => tag.name)
-      })
-      .flat()
-
-    setTagsCount(countAndSort(tags))
-  }, [year, filteredArticles])
-
-  useEffect(() => {
-    if (process.env.NODE_ENV !== 'development') {
-      getArticles()
-    }
+    getArticles()
   }, [])
 
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: '記事投稿数',
-        data: labels.map((_, index) => {
-          return filteredArticles.filter((article) => {
-            return index === article.created_at.getMonth()
-          }).length
-        }),
-        backgroundColor: 'rgba(85, 198, 0, 0.5)',
-      },
-    ],
-  }
-
-  const tag_data = {
-    labels: tagsCount.map((tag) => Object.keys(tag)[0]),
-    datasets: [
-      {
-        label: 'タグ',
-        data: tagsCount.map((tag) => Object.values(tag)[0]),
-        backgroundColor: 'rgba(85, 198, 0, 0.5)',
-      },
-    ],
-  }
-
-  const maxPage = Math.floor(filteredArticles.length / 10) + 1
+  const maxPage = Math.floor(filterArticles(articlesDataSouce).length / 10) + 1
 
   const pagenation = () => {
     return (
@@ -223,17 +173,17 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
         </div>
         <div>
           {`${(page - 1) * 10 + 1}-${
-            page * 10 + 1 > filteredArticles.length
-              ? filteredArticles.length
+            page * 10 + 1 > filterArticles(articlesDataSouce).length
+              ? filterArticles(articlesDataSouce).length
               : page * 10 + 1
-          } of ${filteredArticles.length} articles`}
+          } of ${filterArticles(articlesDataSouce).length} articles`}
         </div>
       </div>
     )
   }
 
   const topView = () => {
-    return filteredArticles.sort((a, b) => {
+    return filterArticles(articlesDataSouce).sort((a, b) => {
       if (a.page_views_count < b.page_views_count) {
         return 1
       }
@@ -242,7 +192,7 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
   }
 
   const topLikes = () => {
-    return filteredArticles.sort((a, b) => {
+    return filterArticles(articlesDataSouce).sort((a, b) => {
       if (a.likes_count < b.likes_count) {
         return 1
       }
@@ -251,7 +201,7 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
   }
 
   const topStock = () => {
-    return filteredArticles.sort((a, b) => {
+    return filterArticles(articlesDataSouce).sort((a, b) => {
       if (a.stocks_count < b.stocks_count) {
         return 1
       }
@@ -287,20 +237,21 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
         </div>
       </div>
       <div className='overflow-y-auto py-5'>
-        {filteredArticles.length === 0 ? (
+        {filterArticles(articlesDataSouce).length === 0 ? (
           <div>投稿がありません。</div>
         ) : (
           <div>
             <h3 className='text-lg font-bold'>Article List</h3>
             <Article
-              articles={filteredArticles.slice((page - 1) * 10, page * 10)}
+              articles={filterArticles(articlesDataSouce).slice(
+                (page - 1) * 10,
+                page * 10
+              )}
             />
             {pagenation()}
             <div className='divider'></div>
             <h3 className='text-lg font-bold'>Awards</h3>
-            <div
-              className={`flex flex-wrap justify-evenly gap-10 p-4 ${css.award}`}
-            >
+            <div className='flex flex-wrap justify-evenly gap-10 p-4'>
               <Awards
                 title='今年最も閲覧された記事'
                 article={topView()}
@@ -318,7 +269,7 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
               />
             </div>
             <div className='divider'></div>
-            <Chart articles={filteredArticles} tagCount={tagsCount} />
+            <Chart articles={filterArticles(articlesDataSouce)} />
           </div>
         )}
       </div>

@@ -9,16 +9,16 @@ import {
   Legend,
 } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
-import { QiitaResponse } from '@/pages/qiita'
+import { QiitaConvertResponse } from '@/pages/qiita'
+import { countAndSort } from '@/libs/countAndSort'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 interface Props {
-  tagCount: { [key in string]: number }[]
-  articles: QiitaResponse[]
+  articles: QiitaConvertResponse[]
 }
 
-const Chart: FC<Props> = ({ tagCount, articles }) => {
+const Chart: FC<Props> = ({ articles }) => {
   const options = {
     responsive: true,
   }
@@ -52,6 +52,10 @@ const Chart: FC<Props> = ({ tagCount, articles }) => {
       },
     ],
   }
+
+  const tagCount = countAndSort(
+    articles.map((arti) => arti.tags.map((tag) => tag.name)).flat()
+  )
 
   const tag_data = {
     labels: tagCount.map((tag) => Object.keys(tag)[0]),
