@@ -16,8 +16,11 @@ const TechStack: FC<Props> = ({ stacks, title }) => {
       <div className='flex flex-wrap gap-5'>
         {stacks.map((stack, index) => {
           return (
-            <div key={index} className='p-3'>
-              <div className='flex items-center gap-2'>
+            <div
+              key={index}
+              className='flex w-full flex-col items-center rounded-lg bg-base-100 p-3 md:w-fit md:items-start'
+            >
+              <div className='flex flex-col items-center gap-2 md:flex-row'>
                 <div className='avatar md:m-0'>
                   <div className='w-5 rounded-full'>
                     <Image
