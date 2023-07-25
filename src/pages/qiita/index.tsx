@@ -1,6 +1,7 @@
 import Article from '@/components/Article'
 import Awards from '@/components/Awards'
-import Chart from '@/components/Qiita/Chart'
+import Chart from '@/components/Chart'
+import Search from '@/components/Search'
 import { mockData } from '@/libs/mockdata'
 import { GetStaticProps } from 'next'
 import { FC, useEffect, useState } from 'react'
@@ -86,17 +87,24 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
       title: '最新データを取得します。',
     })
 
-    const response = await fetch('/api/getArticles')
-    const json = await response.json()
+    try {
+      const response = await fetch('/api/getArticles')
+      const json = await response.json()
 
-    if (articlesDataSouce.length !== convertArticles(json).length) {
-      setArticlesDataSource(convertArticles(json))
+      if (articlesDataSouce.length !== convertArticles(json).length) {
+        setArticlesDataSource(convertArticles(json))
+      }
+
+      Toast.fire({
+        icon: 'success',
+        title: '更新が完了しました。',
+      })
+    } catch (error) {
+      Toast.fire({
+        icon: 'error',
+        title: '更新に失敗しました。',
+      })
     }
-
-    Toast.fire({
-      icon: 'success',
-      title: '更新が完了しました。',
-    })
   }
 
   useEffect(() => {
@@ -249,6 +257,11 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
               )}
             />
             {pagenation()}
+            <div className='divider'></div>
+            <Search
+              articles={filterArticles(articlesDataSouce)}
+              setArticles={setArticlesDataSource}
+            ></Search>
             <div className='divider'></div>
             <h3 className='text-lg font-bold'>Awards</h3>
             <div className='flex flex-wrap justify-evenly gap-10 p-4'>

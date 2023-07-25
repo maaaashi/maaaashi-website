@@ -9,8 +9,10 @@ interface Props {
 }
 
 const Article: FC<Props> = ({ articles }) => {
+  if (articles.length === 0) return <></>
+
   return (
-    <div className='carousel-center carousel rounded-box m-4 space-x-4 bg-neutral p-4'>
+    <div className='rounded-box m-4 flex space-x-4 overflow-x-auto bg-neutral p-4'>
       {articles.map((article, index) => (
         <div className='carousel-item flex-col gap-2' key={index}>
           <a
