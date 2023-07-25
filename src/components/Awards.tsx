@@ -1,4 +1,4 @@
-import { QiitaResponse } from '@/pages/qiita'
+import { QiitaConvertResponse } from '@/pages/qiita'
 import Image from 'next/image'
 import React, { FC } from 'react'
 import Tags from './Tags'
@@ -7,7 +7,7 @@ import css from './awards.module.css'
 
 interface Props {
   title: string
-  article: QiitaResponse
+  article: QiitaConvertResponse
   description: string
 }
 

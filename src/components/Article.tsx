@@ -1,11 +1,11 @@
-import { QiitaResponse } from '@/pages/qiita'
+import { QiitaConvertResponse } from '@/pages/qiita'
 import Image from 'next/image'
 import React, { FC } from 'react'
 import qiita from '@/libs/images/qiita.png'
 import Tags from './Tags'
 
 interface Props {
-  articles: QiitaResponse[]
+  articles: QiitaConvertResponse[]
 }
 
 const Article: FC<Props> = ({ articles }) => {

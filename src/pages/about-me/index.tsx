@@ -13,12 +13,14 @@ import ChatBubble from '@/components/ChatBubble'
 
 type Tech = 'frontend' | 'backend' | 'infrastructure' | 'test' | 'other'
 
+type StackValue = {
+  tech: string
+  level: number
+  isShow?: boolean
+}
+
 export type Stack = {
-  [key in Tech]: {
-    tech: string
-    level: number
-    isShow?: boolean
-  }[]
+  [key in Tech]: StackValue[]
 }
 
 const AboutMe = () => {
@@ -80,6 +82,12 @@ const AboutMe = () => {
     })
   }, [])
 
+  const sortTechStack = (a: StackValue, b: StackValue) => {
+    if (a.isShow) return -1
+    if (a.level > b.level) return -1
+    return 1
+  }
+
   return (
     <div className='overflow-y-auto'>
       <h2 className='mb-5 text-2xl font-bold'>About ME</h2>
@@ -104,11 +112,26 @@ const AboutMe = () => {
         <div className='mt-14 border bg-base-100 p-5'>
           <h3 className='mb-3 text-lg font-bold'>スキル / 得意な技術</h3>
           <div className='w-full p-5 pt-0'>
-            <TechStack stacks={stacks.frontend.sort()} title='フロントエンド' />
-            <TechStack stacks={stacks.backend} title='バックエンド' />
-            <TechStack stacks={stacks.infrastructure} title='インフラ' />
-            <TechStack stacks={stacks.test} title='テスト' />
-            <TechStack stacks={stacks.other} title='その他' />
+            <TechStack
+              stacks={stacks.frontend.sort(sortTechStack)}
+              title='フロントエンド'
+            />
+            <TechStack
+              stacks={stacks.backend.sort(sortTechStack)}
+              title='バックエンド'
+            />
+            <TechStack
+              stacks={stacks.infrastructure.sort(sortTechStack)}
+              title='インフラ'
+            />
+            <TechStack
+              stacks={stacks.test.sort(sortTechStack)}
+              title='テスト'
+            />
+            <TechStack
+              stacks={stacks.other.sort(sortTechStack)}
+              title='その他'
+            />
           </div>
         </div>
       </div>
