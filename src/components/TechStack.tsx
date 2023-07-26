@@ -18,7 +18,8 @@ const TechStack: FC<Props> = ({ stacks, title }) => {
           return (
             <div
               key={index}
-              className='flex w-full flex-col items-center rounded-lg bg-base-100 p-3 md:w-fit md:items-start'
+              className='flex w-full flex-col items-center rounded-lg bg-base-100 p-3 md:tooltip md:w-fit md:items-start'
+              data-tip={stack.tech}
             >
               <div className='flex flex-col items-center gap-2 md:flex-row'>
                 <div className='avatar md:m-0'>
@@ -29,23 +30,23 @@ const TechStack: FC<Props> = ({ stacks, title }) => {
                     />
                   </div>
                 </div>
-                {stack.tech}
-              </div>
-              <div className='rating'>
-                {[...Array(5)].map((_, index) => {
-                  return (
-                    <input
-                      type='radio'
-                      key={index}
-                      name={stack.tech}
-                      checked={stack.level === index + 1}
-                      className={`mask mask-star-2 ${
-                        stack.isShow ? 'bg-accent' : 'bg-info'
-                      }`}
-                      disabled
-                    />
-                  )
-                })}
+                <div className='block md:hidden'>{stack.tech}</div>
+                <div className='rating pointer-events-none'>
+                  {[...Array(5)].map((_, index) => {
+                    return (
+                      <input
+                        type='radio'
+                        key={index}
+                        name={stack.tech}
+                        checked={stack.level === index + 1}
+                        className={`mask mask-star-2 ${
+                          stack.isShow ? 'bg-accent' : 'bg-info'
+                        }`}
+                        disabled
+                      />
+                    )
+                  })}
+                </div>
               </div>
             </div>
           )
