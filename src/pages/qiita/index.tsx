@@ -258,10 +258,7 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
             />
             {pagenation()}
             <div className='divider'></div>
-            <Search
-              articles={filterArticles(articlesDataSouce)}
-              setArticles={setArticlesDataSource}
-            ></Search>
+            <Search articles={filterArticles(articlesDataSouce)}></Search>
             <div className='divider'></div>
             <h3 className='text-lg font-bold'>Awards</h3>
             <div className='flex flex-wrap justify-evenly gap-10 p-4'>

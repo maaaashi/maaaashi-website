@@ -1,13 +1,12 @@
 import { QiitaConvertResponse } from '@/pages/qiita'
-import React, { FC, FormEvent, useState } from 'react'
+import React, { FC, FormEvent, useEffect, useState } from 'react'
 import Article from '../Article'
 
 interface Props {
   articles: QiitaConvertResponse[]
-  setArticles: (articles: QiitaConvertResponse[]) => void
 }
 
-const Search: FC<Props> = ({ articles, setArticles }) => {
+const Search: FC<Props> = ({ articles }) => {
   const [titleMode, setTitleMode] = useState(true)
   const [searched, setSearched] = useState(false)
   const [userInput, setUserInput] = useState('')
@@ -27,6 +26,17 @@ const Search: FC<Props> = ({ articles, setArticles }) => {
     setSearched(true)
     setResults(searchResults)
   }
+
+  useEffect(() => {
+    const searchResults = articles.filter((article) => {
+      if (titleMode) {
+        return article.title.includes(userInput)
+      } else {
+        return article.body.includes(userInput)
+      }
+    })
+    setResults(searchResults)
+  }, [articles])
 
   return (
     <div>
