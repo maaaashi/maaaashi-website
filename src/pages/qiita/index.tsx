@@ -219,31 +219,31 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
 
   return (
     <>
-      <div className='flex border-b-2'>
-        <div className='flex flex-1 items-center justify-between p-4'>
-          <button
-            className='btn-outline btn'
-            onClick={() => {
-              setYear(year - 1)
-              setPage(1)
-            }}
-          >
-            <MdNavigateBefore />
-            {year - 1}年
-          </button>
-          <h2 className='text-2xl font-bold'>{year}年</h2>
-          <button
-            className='btn'
-            onClick={() => {
-              setYear(year + 1)
-              setPage(1)
-            }}
-          >
-            {year + 1}年
-            <MdNavigateNext />
-          </button>
-        </div>
+      <div className='flex flex-1 items-center justify-between md:p-4'>
+        <button
+          className='btn-outline btn'
+          onClick={() => {
+            setYear(year - 1)
+            setPage(1)
+          }}
+        >
+          <MdNavigateBefore />
+          {year - 1}年
+        </button>
+        <h2 className='text-2xl font-bold'>{year}年</h2>
+        <button
+          className='btn'
+          onClick={() => {
+            setYear(year + 1)
+            setPage(1)
+          }}
+        >
+          {year + 1}年
+          <MdNavigateNext />
+        </button>
       </div>
+      <div className='divider'></div>
+
       <div className='overflow-y-auto py-5'>
         {filterArticles(articlesDataSouce).length === 0 ? (
           <div>投稿がありません。</div>
