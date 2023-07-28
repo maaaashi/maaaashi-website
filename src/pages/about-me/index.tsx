@@ -88,15 +88,10 @@ const AboutMe = () => {
           <ChatBubble title='名前' content='大岡正志' />
           <ChatBubble title='出身' content='東京' />
           <ChatBubble
-            title='好きなもの'
-            content='アジャイル開発・マイクロサービス'
+            title='エンジニア歴'
+            content={`${new Date().getFullYear() - 2019}年目`}
           />
-          <ChatBubble
-            title='現在'
-            content={`佐賀県のIT企業に就職し、都内で${
-              new Date().getFullYear() - 2020
-            }年間Webアプリケーションエンジニアとして働いています。`}
-          />
+          <ChatBubble title='興味' content='アジャイル開発・マイクロサービス' />
           <ChatBubble title='資格' content='AWS Solution Architect Associate' />
         </div>
         {/* <ReactMarkdown remarkPlugins={[gfm]}>{aboutMeData()}</ReactMarkdown> */}

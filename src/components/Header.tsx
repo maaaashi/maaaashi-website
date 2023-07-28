@@ -11,7 +11,7 @@ import { themeChange } from 'theme-change'
 import Link from 'next/link'
 import rep from '@/libs/images/rep.jpg'
 import Image from 'next/image'
-import { SiAboutdotme } from 'react-icons/si'
+import { SiAboutdotme, SiQiita } from 'react-icons/si'
 
 const Header: FC = () => {
   useEffect(() => {
@@ -176,7 +176,7 @@ const Header: FC = () => {
           </div>
           {themeList()}
         </div>
-        <div className='avatar hidden md:block'>
+        <div className='avatar hidden lg:block'>
           <div className='w-full rounded-full'>
             <a href='https://twitter.com/pg_maaaashi' target='_blank'>
               <AiFillTwitterCircle
@@ -187,13 +187,24 @@ const Header: FC = () => {
             </a>
           </div>
         </div>
-        <div className='avatar mr-3 hidden md:block'>
+        <div className='avatar hidden lg:block'>
           <div className='w-full rounded-full'>
             <a href='https://github.com/maaaashi' target='_blank'>
               <AiFillGithub
                 size='30px'
                 color='#111'
                 className='rounded-full bg-white hover:bg-slate-300'
+              />
+            </a>
+          </div>
+        </div>
+        <div className='avatar mr-3 hidden lg:block'>
+          <div className='w-full'>
+            <a href='https://qiita.com/maaaashi' target='_blank'>
+              <SiQiita
+                size='30PX'
+                color='white'
+                style={{ backgroundColor: '#00c600' }}
               />
             </a>
           </div>

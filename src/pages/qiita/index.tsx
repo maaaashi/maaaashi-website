@@ -72,6 +72,7 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
   >(convertArticles(originalArticles))
 
   const getArticles = async () => {
+    if (process.env.NODE_ENV === 'development') return
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
