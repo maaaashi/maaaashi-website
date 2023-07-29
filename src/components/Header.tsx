@@ -121,6 +121,11 @@ const Header: FC = () => {
                 GitHub
               </a>
             </li>
+            <li>
+              <a target='_blank' href='https://qiita.com/maaaashi'>
+                Qiita
+              </a>
+            </li>
           </ul>
         </div>
         <Link
