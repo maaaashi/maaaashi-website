@@ -128,7 +128,7 @@ const Woodle = () => {
   return (
     <div>
       <h2 className='text-2xl'>Wordle 作成中...</h2>
-      <div className='w-full'>
+      <div className='flex flex-col items-center justify-center'>
         <form>
           <div
             className={`w-fit rounded-lg p-2 ${
@@ -178,42 +178,43 @@ const Woodle = () => {
           </div>
           <div className='font-bold text-error'>{errorMessage}</div>
         </form>
+        <div className='mb-4 flex'>
+          <div className='border border-primary p-2'>Hit</div>
+          <div className='border border-secondary p-2'>Blow</div>
+        </div>
+        <div>
+          {searchResults.map((result, index) => {
+            return (
+              <div key={index} className='flex'>
+                {result.map(({ value, result }, i) => {
+                  return (
+                    <div
+                      key={i}
+                      className={`flex aspect-square w-12 items-center justify-center border p-2 ${setClassName(
+                        result
+                      )}`}
+                    >
+                      {value}
+                    </div>
+                  )
+                })}
+              </div>
+            )
+          })}
+          {[...Array(5 - searchResults.length)].map((_, i) => {
+            return (
+              <div key={i} className='flex'>
+                <div className='aspect-square w-12 border p-2'></div>
+                <div className='aspect-square w-12 border p-2'></div>
+                <div className='aspect-square w-12 border p-2'></div>
+                <div className='aspect-square w-12 border p-2'></div>
+                <div className='aspect-square w-12 border p-2'></div>
+              </div>
+            )
+          })}
+        </div>
+        <WordleKeyboard setAnswer={setInputValue} />
       </div>
-      <div className='mb-4 flex'>
-        <div className='border border-primary p-2'>Hit</div>
-        <div className='border border-secondary p-2'>Blow</div>
-      </div>
-      {searchResults.map((result, index) => {
-        return (
-          <div key={index} className='flex'>
-            {result.map(({ value, result }, i) => {
-              return (
-                <div
-                  key={i}
-                  className={`flex aspect-square w-12 items-center justify-center border p-2 ${setClassName(
-                    result
-                  )}`}
-                >
-                  {value}
-                </div>
-              )
-            })}
-          </div>
-        )
-      })}
-      {[...Array(5 - searchResults.length)].map((_, i) => {
-        return (
-          <div key={i} className='flex'>
-            <div className='aspect-square w-12 border p-2'></div>
-            <div className='aspect-square w-12 border p-2'></div>
-            <div className='aspect-square w-12 border p-2'></div>
-            <div className='aspect-square w-12 border p-2'></div>
-            <div className='aspect-square w-12 border p-2'></div>
-          </div>
-        )
-      })}
-
-      <WordleKeyboard setAnswer={setInputValue} />
     </div>
   )
 }

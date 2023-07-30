@@ -36,21 +36,47 @@ const WordleKeyboard: FC<Props> = ({ setAnswer }) => {
     ['あ', 'い', 'う', 'え', 'お'],
   ]
 
+  const otherRows = [
+    ['ゃ', 'ゅ', 'ょ', 'っ', 'ー'],
+    ['ぱ', 'ぴ', 'ぷ', 'ぺ', 'ぽ'],
+    ['ば', 'び', 'ぶ', 'べ', 'ぼ'],
+    ['だ', 'ぢ', 'づ', 'で', 'ど'],
+    ['ざ', 'じ', 'ず', 'ぜ', 'ぞ'],
+    ['が', 'ぎ', 'ぐ', 'げ', 'ご'],
+  ]
+
   return (
-    <div className='flex gap-1'>
-      {rows.map((row, index) => {
-        return (
-          <div className='flex w-fit flex-col gap-1' key={index}>
-            {row.map((r, i) => {
-              return (
-                <div key={i} className='flex flex-col'>
-                  <WordleKey keyword={r} setAnswer={setAnswer} />
-                </div>
-              )
-            })}
-          </div>
-        )
-      })}
+    <div className='flex flex-col items-end gap-2 rounded-xl bg-base-300 p-3'>
+      <div className='flex w-fit gap-1'>
+        {rows.map((row, index) => {
+          return (
+            <div className='flex w-fit flex-col gap-1' key={index}>
+              {row.map((r, i) => {
+                return (
+                  <div key={i} className='flex flex-col'>
+                    <WordleKey keyword={r} setAnswer={setAnswer} />
+                  </div>
+                )
+              })}
+            </div>
+          )
+        })}
+      </div>
+      <div className='flex w-fit gap-1'>
+        {otherRows.map((row, index) => {
+          return (
+            <div className='flex w-fit flex-col gap-1' key={index}>
+              {row.map((r, i) => {
+                return (
+                  <div key={i} className='flex flex-col'>
+                    <WordleKey keyword={r} setAnswer={setAnswer} />
+                  </div>
+                )
+              })}
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }
