@@ -1,4 +1,4 @@
-import WordleInput from '@/components/WordleInput'
+import WordleKeyboard from '@/components/WordleKeyboard'
 import { originalWords, pickUpAnswer } from '@/libs/words'
 import React, {
   FormEvent,
@@ -37,6 +37,16 @@ const Woodle = () => {
     }
   }
 
+  const judge = (word: string, index: number): 'hit' | 'blow' | '' => {
+    if (answer![index] === word) {
+      return 'hit'
+    } else if (answer!.includes(word)) {
+      return 'blow'
+    } else {
+      return ''
+    }
+  }
+
   const keyDownHandler = (
     e: KeyboardEvent<HTMLInputElement>,
     index: number
@@ -58,7 +68,7 @@ const Woodle = () => {
               searchWords.map((s, index) => {
                 return {
                   value: s,
-                  result: answer[index] === s ? 'hit' : '',
+                  result: judge(s, index),
                 }
               }),
             ]
@@ -73,6 +83,44 @@ const Woodle = () => {
     }
   }
 
+  const setInputValue = (value: string) => {
+    const blankInputIndex = searchWords.findIndex((word) => {
+      return !word
+    })
+
+    if (inputRefs[blankInputIndex] && inputRefs[blankInputIndex].current) {
+      inputRefs[blankInputIndex].current!.value = value
+      setSearchWords(
+        (c) =>
+          c.map((c2, index2) => {
+            if (blankInputIndex === index2) {
+              return value
+            }
+            return c2
+          }) as Word
+      )
+    } else {
+      const lastIndex = inputRefs.length - 1
+      inputRefs[lastIndex].current!.value = value
+      setSearchWords(
+        (c) =>
+          c.map((c2, index2) => {
+            if (lastIndex === index2) {
+              return value
+            }
+            return c2
+          }) as Word
+      )
+    }
+
+    if (
+      inputRefs[blankInputIndex + 1] &&
+      inputRefs[blankInputIndex + 1].current
+    ) {
+      inputRefs[blankInputIndex + 1].current!.focus()
+    }
+  }
+
   useEffect(() => {
     setAnswer(pickUpAnswer())
   }, [])
@@ -80,11 +128,6 @@ const Woodle = () => {
   return (
     <div>
       <h2 className='text-2xl'>Wordle 作成中...</h2>
-      <div className='flex'>
-        {answer?.map((a, i) => {
-          return <div key={i}>{a}</div>
-        })}
-      </div>
       <div className='w-full'>
         <form>
           <div
@@ -100,7 +143,7 @@ const Woodle = () => {
                   ref={ref}
                   maxLength={1}
                   value={searchWords[index]}
-                  className='input-bordered input w-12'
+                  className='input-bordered input aspect-square w-12'
                   onKeyDown={(e) => keyDownHandler(e, index)}
                   onCompositionStart={() => setIsComposing(false)}
                   onCompositionEnd={() => setIsComposing(true)}
@@ -136,7 +179,7 @@ const Woodle = () => {
           <div className='font-bold text-error'>{errorMessage}</div>
         </form>
       </div>
-      <div className='flex'>
+      <div className='mb-4 flex'>
         <div className='border border-primary p-2'>Hit</div>
         <div className='border border-secondary p-2'>Blow</div>
       </div>
@@ -145,7 +188,12 @@ const Woodle = () => {
           <div key={index} className='flex'>
             {result.map(({ value, result }, i) => {
               return (
-                <div key={i} className={`border p-2 ${setClassName(result)}`}>
+                <div
+                  key={i}
+                  className={`flex aspect-square w-12 items-center justify-center border p-2 ${setClassName(
+                    result
+                  )}`}
+                >
                   {value}
                 </div>
               )
@@ -153,6 +201,19 @@ const Woodle = () => {
           </div>
         )
       })}
+      {[...Array(5 - searchResults.length)].map((_, i) => {
+        return (
+          <div key={i} className='flex'>
+            <div className='aspect-square w-12 border p-2'></div>
+            <div className='aspect-square w-12 border p-2'></div>
+            <div className='aspect-square w-12 border p-2'></div>
+            <div className='aspect-square w-12 border p-2'></div>
+            <div className='aspect-square w-12 border p-2'></div>
+          </div>
+        )
+      })}
+
+      <WordleKeyboard setAnswer={setInputValue} />
     </div>
   )
 }
