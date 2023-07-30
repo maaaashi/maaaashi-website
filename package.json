@@ -37,7 +37,8 @@
     "theme-change": "^2.5.0",
     "three": "^0.152.2",
     "typescript": "5.0.4",
-    "xml2js": "^0.6.0"
+    "xml2js": "^0.6.0",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "prettier": "^2.8.7",
