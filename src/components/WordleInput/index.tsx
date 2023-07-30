@@ -10,8 +10,8 @@ const WordleInput: FC<Props> = ({ data, setData }) => {
     <input
       type='text'
       maxLength={1}
+      value={data}
       className='input-bordered input w-12'
-      required
       onChange={(e) => {
         setData(e.target.value)
       }}

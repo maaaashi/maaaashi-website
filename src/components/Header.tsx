@@ -12,6 +12,7 @@ import Link from 'next/link'
 import rep from '@/libs/images/rep.jpg'
 import Image from 'next/image'
 import { SiAboutdotme, SiQiita } from 'react-icons/si'
+import { HiOutlineSquares2X2 } from 'react-icons/hi2'
 
 const Header: FC = () => {
   useEffect(() => {
@@ -112,6 +113,9 @@ const Header: FC = () => {
               <Link href='/mini-project'>Mini Project</Link>
             </li>
             <li>
+              <Link href='/wordle'>Wordle</Link>
+            </li>
+            <li>
               <a target='_blank' href='https://twitter.com/pg_maaaashi'>
                 Twitter
               </a>
@@ -146,24 +150,25 @@ const Header: FC = () => {
         <div className='hidden gap-4 md:inline-flex'>
           <Link
             href='/about-me'
-            className='btn-primary btn flex-col justify-around'
+            className='btn-info btn flex-col justify-around'
           >
             <SiAboutdotme size='20px' />
             About me
           </Link>
-          <Link
-            href='/qiita'
-            className='btn-primary btn flex-col justify-around'
-          >
+          <Link href='/qiita' className='btn-info btn flex-col justify-around'>
             <MdOutlineArticle size='20px' />
             Qiita
           </Link>
           <Link
             href='/mini-project'
-            className='btn-primary btn flex-col justify-around'
+            className='btn-info btn flex-col justify-around'
           >
             <GoProjectSymlink size='20px' />
             Mini Project
+          </Link>
+          <Link href='/wordle' className='btn-info btn flex-col justify-around'>
+            <HiOutlineSquares2X2 size='20px' />
+            Wordle
           </Link>
           <div className='dropdown-end dropdown'>
             <label tabIndex={0} className='btn flex-col justify-around'>
