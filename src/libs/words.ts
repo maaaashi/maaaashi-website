@@ -21138,3 +21138,8 @@ export const originalWords = [
   'ろんぱあす',
   'ろんぱあず',
 ]
+
+export const pickUpAnswer = (): [string, string, string, string, string] => {
+  const random = originalWords[Math.floor(Math.random() * originalWords.length)]
+  return [random[0], random[1], random[2], random[3], random[4]]
+}
