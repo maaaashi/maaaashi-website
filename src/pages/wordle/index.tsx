@@ -47,6 +47,32 @@ const Woodle = () => {
     }
   }
 
+  const searchWord = () => {
+    const target = searchWords.join('')
+
+    if (target.length !== 5) {
+      setErrorMessage('５文字すべて埋めてください。')
+      return
+    }
+
+    if (originalWords.includes(target)) {
+      setSearchResults((c) => {
+        return [
+          ...c,
+          searchWords.map((s, index) => {
+            return {
+              value: s,
+              result: judge(s, index),
+            }
+          }),
+        ]
+      })
+      setSearchWords([...initial])
+    } else {
+      setErrorMessage('存在しない言葉です。')
+    }
+  }
+
   const keyDownHandler = (
     e: KeyboardEvent<HTMLInputElement>,
     index: number
@@ -54,29 +80,7 @@ const Woodle = () => {
     e.preventDefault()
     if (isComposing && e.key === 'Enter') {
       if (index === inputRefs.length - 1) {
-        const target = searchWords.join('')
-
-        if (target.length !== 5) {
-          setErrorMessage('５文字すべて埋めてください。')
-          return
-        }
-
-        if (originalWords.includes(target)) {
-          setSearchResults((c) => {
-            return [
-              ...c,
-              searchWords.map((s, index) => {
-                return {
-                  value: s,
-                  result: judge(s, index),
-                }
-              }),
-            ]
-          })
-          setSearchWords([...initial])
-        } else {
-          setErrorMessage('存在しない言葉です。')
-        }
+        searchWord()
       } else {
         inputRefs[index + 1].current!.focus()
       }
@@ -121,6 +125,12 @@ const Woodle = () => {
     }
   }
 
+  const submitHandler = (e: FormEvent) => {
+    e.preventDefault()
+
+    searchWord()
+  }
+
   useEffect(() => {
     setAnswer(pickUpAnswer())
   }, [])
@@ -129,7 +139,7 @@ const Woodle = () => {
     <div>
       <h2 className='text-2xl'>Wordle 作成中...</h2>
       <div className='flex flex-col items-center justify-center'>
-        <form>
+        <form onSubmit={submitHandler}>
           <div
             className={`w-fit rounded-lg p-2 ${
               errorMessage ? 'border border-error' : ''
