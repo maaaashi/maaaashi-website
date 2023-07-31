@@ -1,18 +1,33 @@
 import React, { FC } from 'react'
 
-interface Props {
+type UseWords = { [key in string]: '' | 'hit' | 'blow' }
+
+interface WordleKeyProps {
+  keyword: string
   setAnswer: Function
+  useWords: UseWords
 }
 
-const WordleKey: FC<{ keyword: string; setAnswer: Function }> = ({
-  keyword,
-  setAnswer,
-}) => {
+const WordleKey: FC<WordleKeyProps> = ({ keyword, setAnswer, useWords }) => {
+  const setUseWordClass = (): string => {
+    const result = useWords[keyword]
+    switch (result) {
+      case 'blow':
+        return 'border-secondary'
+      case 'hit':
+        return 'border-primary'
+      case '':
+        return 'bg-gray-300'
+      default:
+        return ''
+    }
+  }
+
   return (
     <kbd
       className={`kbd cursor-pointer bg-base-100 hover:bg-base-200 ${
         keyword ? '' : 'pointer-events-none'
-      }`}
+      } ${setUseWordClass()}`}
       onClick={() => {
         setAnswer(keyword)
       }}
@@ -22,7 +37,12 @@ const WordleKey: FC<{ keyword: string; setAnswer: Function }> = ({
   )
 }
 
-const WordleKeyboard: FC<Props> = ({ setAnswer }) => {
+interface Props {
+  setAnswer: Function
+  useWords: UseWords
+}
+
+const WordleKeyboard: FC<Props> = ({ setAnswer, useWords }) => {
   const rows = [
     ['わ', '', 'を', '', 'ん'],
     ['ら', 'り', 'る', 'れ', 'ろ'],
@@ -54,7 +74,11 @@ const WordleKeyboard: FC<Props> = ({ setAnswer }) => {
               {row.map((r, i) => {
                 return (
                   <div key={i} className='flex flex-col'>
-                    <WordleKey keyword={r} setAnswer={setAnswer} />
+                    <WordleKey
+                      keyword={r}
+                      setAnswer={setAnswer}
+                      useWords={useWords}
+                    />
                   </div>
                 )
               })}
@@ -69,7 +93,11 @@ const WordleKeyboard: FC<Props> = ({ setAnswer }) => {
               {row.map((r, i) => {
                 return (
                   <div key={i} className='flex flex-col'>
-                    <WordleKey keyword={r} setAnswer={setAnswer} />
+                    <WordleKey
+                      keyword={r}
+                      setAnswer={setAnswer}
+                      useWords={useWords}
+                    />
                   </div>
                 )
               })}

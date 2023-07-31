@@ -11,6 +11,9 @@ import React, {
 const Woodle = () => {
   type Word = [string, string, string, string, string]
   const [answer, setAnswer] = useState<Word>()
+  const [useWords, setUseWords] = useState<{
+    [key in string]: '' | 'hit' | 'blow'
+  }>({})
   const inputRefs = [
     useRef<HTMLInputElement>(null),
     useRef<HTMLInputElement>(null),
@@ -39,10 +42,19 @@ const Woodle = () => {
 
   const judge = (word: string, index: number): 'hit' | 'blow' | '' => {
     if (answer![index] === word) {
+      setUseWords((c) => {
+        return { ...c, [word]: 'hit' }
+      })
       return 'hit'
     } else if (answer!.includes(word)) {
+      setUseWords((c) => {
+        return { ...c, [word]: 'blow' }
+      })
       return 'blow'
     } else {
+      setUseWords((c) => {
+        return { ...c, [word]: '' }
+      })
       return ''
     }
   }
@@ -91,13 +103,20 @@ const Woodle = () => {
     const blankInputIndex = searchWords.findIndex((word) => {
       return !word
     })
+    let targetIndex: number
 
-    if (inputRefs[blankInputIndex] && inputRefs[blankInputIndex].current) {
-      inputRefs[blankInputIndex].current!.value = value
+    if (blankInputIndex === -1) {
+      targetIndex = inputRefs.length - 1
+    } else {
+      targetIndex = blankInputIndex
+    }
+
+    if (inputRefs[targetIndex] && inputRefs[targetIndex].current) {
+      inputRefs[targetIndex].current!.value = value
       setSearchWords(
         (c) =>
           c.map((c2, index2) => {
-            if (blankInputIndex === index2) {
+            if (targetIndex === index2) {
               return value
             }
             return c2
@@ -117,11 +136,8 @@ const Woodle = () => {
       )
     }
 
-    if (
-      inputRefs[blankInputIndex + 1] &&
-      inputRefs[blankInputIndex + 1].current
-    ) {
-      inputRefs[blankInputIndex + 1].current!.focus()
+    if (inputRefs[targetIndex + 1] && inputRefs[targetIndex + 1].current) {
+      inputRefs[targetIndex + 1].current!.focus()
     }
   }
 
@@ -188,42 +204,45 @@ const Woodle = () => {
           </div>
           <div className='font-bold text-error'>{errorMessage}</div>
         </form>
-        <div className='mb-4 flex'>
-          <div className='border border-primary p-2'>Hit</div>
-          <div className='border border-secondary p-2'>Blow</div>
+        <div className='mb-4 flex w-full justify-around'>
+          <div className='flex h-fit'>
+            <div className='border border-primary p-2'>Hit</div>
+            <div className='border border-secondary p-2'>Blow</div>
+          </div>
+          <div>
+            {searchResults.map((result, index) => {
+              return (
+                <div key={index} className='flex'>
+                  {result.map(({ value, result }, i) => {
+                    return (
+                      <div
+                        key={i}
+                        className={`flex aspect-square w-12 items-center justify-center border p-2 ${setClassName(
+                          result
+                        )}`}
+                      >
+                        {value}
+                      </div>
+                    )
+                  })}
+                </div>
+              )
+            })}
+            {[...Array(5 - searchResults.length)].map((_, i) => {
+              return (
+                <div key={i} className='flex'>
+                  <div className='aspect-square w-12 border p-2'></div>
+                  <div className='aspect-square w-12 border p-2'></div>
+                  <div className='aspect-square w-12 border p-2'></div>
+                  <div className='aspect-square w-12 border p-2'></div>
+                  <div className='aspect-square w-12 border p-2'></div>
+                </div>
+              )
+            })}
+          </div>
+          <div>hoge</div>
         </div>
-        <div>
-          {searchResults.map((result, index) => {
-            return (
-              <div key={index} className='flex'>
-                {result.map(({ value, result }, i) => {
-                  return (
-                    <div
-                      key={i}
-                      className={`flex aspect-square w-12 items-center justify-center border p-2 ${setClassName(
-                        result
-                      )}`}
-                    >
-                      {value}
-                    </div>
-                  )
-                })}
-              </div>
-            )
-          })}
-          {[...Array(5 - searchResults.length)].map((_, i) => {
-            return (
-              <div key={i} className='flex'>
-                <div className='aspect-square w-12 border p-2'></div>
-                <div className='aspect-square w-12 border p-2'></div>
-                <div className='aspect-square w-12 border p-2'></div>
-                <div className='aspect-square w-12 border p-2'></div>
-                <div className='aspect-square w-12 border p-2'></div>
-              </div>
-            )
-          })}
-        </div>
-        <WordleKeyboard setAnswer={setInputValue} />
+        <WordleKeyboard setAnswer={setInputValue} useWords={useWords} />
       </div>
     </div>
   )
