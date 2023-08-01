@@ -21,7 +21,7 @@ const Article: FC<Props> = ({ articles }) => {
             className='relative hover:brightness-75'
           >
             <Image src={qiita} alt={article.title} height={200} />
-            <p className='absolute left-16 right-14 top-14 font-bold text-black'>
+            <p className='absolute left-16 right-14 top-14 line-clamp-2 font-bold text-black md:line-clamp-3'>
               {article.title}
             </p>
             <div className='absolute bottom-0'>
