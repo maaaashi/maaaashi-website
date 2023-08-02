@@ -70,13 +70,13 @@ const Chart: FC<Props> = ({ articles }) => {
 
   return (
     <div>
-      <h3 className='text-lg font-bold'>Data</h3>
-      <div className='flex w-full flex-wrap justify-evenly gap-10'>
-        <div className='w-full bg-white p-5 md:w-2/5'>
+      <h3 className='mb-2 text-lg font-bold'>Data</h3>
+      <div className='flex w-full flex-col flex-wrap justify-evenly gap-10 lg:flex-row'>
+        <div className='w-full bg-white p-5 lg:w-2/5'>
           <h4 className='font-bold text-black'>月別投稿数</h4>
           <Bar options={options} data={data} />
         </div>
-        <div className='w-full bg-white p-5 md:w-2/5'>
+        <div className='w-full bg-white p-5 lg:w-2/5'>
           <h4 className='font-bold text-black'>タグ投稿数</h4>
           <Bar options={options} data={tag_data} />
         </div>
