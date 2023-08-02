@@ -78,6 +78,58 @@ const Header: FC = () => {
     )
   }
 
+  type LinkType = {
+    href: string
+    value: string
+    icon: JSX.Element
+  }[]
+
+  const linkListInnternal: LinkType = [
+    { href: '/about-me', value: 'About me', icon: <SiAboutdotme size={20} /> },
+    { href: '/qiita', value: 'Qiita', icon: <MdOutlineArticle size={20} /> },
+    {
+      href: '/mini-project',
+      value: 'Mini Project',
+      icon: <GoProjectSymlink size={20} />,
+    },
+  ]
+
+  const linkListExternal: LinkType = [
+    {
+      href: 'https://twitter.com/pg_maaaashi',
+      value: 'Twitter',
+      icon: (
+        <AiFillTwitterCircle
+          size='30px'
+          color='#1877f2'
+          className='rounded-full bg-white hover:bg-slate-300'
+        />
+      ),
+    },
+    {
+      href: 'https://github.com/maaaashi',
+      value: 'GitHub',
+      icon: (
+        <AiFillGithub
+          size='30px'
+          color='#111'
+          className='rounded-full bg-white hover:bg-slate-300'
+        />
+      ),
+    },
+    {
+      href: 'https://qiita.com/maaaashi',
+      value: 'Qiita',
+      icon: (
+        <SiQiita
+          size='30PX'
+          color='white'
+          style={{ backgroundColor: '#00c600' }}
+        />
+      ),
+    },
+  ]
+
   return (
     <div className='navbar bg-base-100'>
       <div className='navbar-start w-[22rem]'>
@@ -102,30 +154,18 @@ const Header: FC = () => {
             tabIndex={0}
             className='dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow'
           >
-            <li>
-              <Link href='/about-me'>About me</Link>
-            </li>
-            <li>
-              <Link href='/qiita'>Qiita</Link>
-            </li>
-            <li>
-              <Link href='/mini-project'>Mini Project</Link>
-            </li>
-            <li>
-              <a target='_blank' href='https://twitter.com/pg_maaaashi'>
-                Twitter
-              </a>
-            </li>
-            <li>
-              <a target='_blank' href='https://github.com/maaaashi'>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a target='_blank' href='https://qiita.com/maaaashi'>
-                Qiita
-              </a>
-            </li>
+            {linkListInnternal.map(({ href, value }, index) => (
+              <li key={index}>
+                <Link href={href}>{value}</Link>
+              </li>
+            ))}
+            {linkListExternal.map(({ href, value }, index) => (
+              <li key={index}>
+                <a target='_blank' href={href}>
+                  {value}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
         <Link
@@ -144,24 +184,16 @@ const Header: FC = () => {
       </div>
       <div className='navbar-end w-full gap-4 md:inline-flex'>
         <div className='hidden gap-4 md:inline-flex'>
-          <Link
-            href='/about-me'
-            className='btn-info btn flex-col justify-around'
-          >
-            <SiAboutdotme size='20px' />
-            About me
-          </Link>
-          <Link href='/qiita' className='btn-info btn flex-col justify-around'>
-            <MdOutlineArticle size='20px' />
-            Qiita
-          </Link>
-          <Link
-            href='/mini-project'
-            className='btn-info btn flex-col justify-around'
-          >
-            <GoProjectSymlink size='20px' />
-            Mini Project
-          </Link>
+          {linkListInnternal.map(({ href, value, icon }, index) => (
+            <Link
+              href={href}
+              className='btn-info btn flex-col justify-around'
+              key={index}
+            >
+              {icon}
+              {value}
+            </Link>
+          ))}
           <div className='dropdown-end dropdown'>
             <label tabIndex={0} className='btn flex-col justify-around'>
               <BsPalette2 size='15px' />
@@ -178,38 +210,16 @@ const Header: FC = () => {
           </div>
           {themeList()}
         </div>
-        <div className='avatar hidden lg:block'>
-          <div className='w-full rounded-full'>
-            <a href='https://twitter.com/pg_maaaashi' target='_blank'>
-              <AiFillTwitterCircle
-                size='30px'
-                color='#1877f2'
-                className='rounded-full bg-white hover:bg-slate-300'
-              />
-            </a>
-          </div>
-        </div>
-        <div className='avatar hidden lg:block'>
-          <div className='w-full rounded-full'>
-            <a href='https://github.com/maaaashi' target='_blank'>
-              <AiFillGithub
-                size='30px'
-                color='#111'
-                className='rounded-full bg-white hover:bg-slate-300'
-              />
-            </a>
-          </div>
-        </div>
-        <div className='avatar mr-3 hidden lg:block'>
-          <div className='w-full'>
-            <a href='https://qiita.com/maaaashi' target='_blank'>
-              <SiQiita
-                size='30PX'
-                color='white'
-                style={{ backgroundColor: '#00c600' }}
-              />
-            </a>
-          </div>
+        <div className='mr-3 flex gap-3'>
+          {linkListExternal.map(({ href, icon }, index) => (
+            <div className='avatar hidden lg:block' key={index}>
+              <div className='w-full rounded-full'>
+                <a href={href} target='_blank'>
+                  {icon}
+                </a>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
