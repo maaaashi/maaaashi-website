@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import TechStack from '@/components/TechStack'
-import ChatBubble from '@/components/ChatBubble'
+import ChatArea from '@/components/ChatArea'
 
 type Tech = 'frontend' | 'backend' | 'infrastructure' | 'test' | 'other'
 
@@ -58,21 +58,6 @@ const AboutMe = () => {
     ],
   }
 
-  const chatsRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const project = chatsRef.current
-    if (!project) return
-
-    project.childNodes.forEach((child, index) => {
-      if (child instanceof Element) {
-        setTimeout(() => {
-          child.classList.add('start-animation')
-        }, index * 1000)
-      }
-    })
-  }, [])
-
   const sortTechStack = (a: StackValue, b: StackValue) => {
     if (a.isShow) return -1
     if (a.level > b.level) return -1
@@ -84,16 +69,7 @@ const AboutMe = () => {
       <h2 className='mb-5 text-2xl font-bold'>About ME</h2>
       {/* <div style={{ height: '20000px' }}> */}
       <div className='h-fit'>
-        <div ref={chatsRef}>
-          <ChatBubble title='名前' content='大岡正志' />
-          <ChatBubble title='出身' content='東京' />
-          <ChatBubble
-            title='エンジニア歴'
-            content={`${new Date().getFullYear() - 2019}年目`}
-          />
-          <ChatBubble title='興味' content='アジャイル開発・マイクロサービス' />
-          <ChatBubble title='資格' content='AWS Solution Architect Associate' />
-        </div>
+        <ChatArea />
         {/* <ReactMarkdown remarkPlugins={[gfm]}>{aboutMeData()}</ReactMarkdown> */}
         <div className='mt-14 border bg-base-100 p-5'>
           <h3 className='mb-3 text-lg font-bold'>スキル / 得意な技術</h3>
