@@ -36,7 +36,7 @@ const ChatBubble: FC<Props> = ({ content, side }) => {
               <Image src={aboutMe} alt='大岡正志' />
             </div>
           </div>
-          <div className='chat-bubble'>
+          <div className='chat-bubble chat-bubble-accent break-all'>
             {textToShow.split('').map((c, i) => (
               <span
                 key={i}
@@ -52,7 +52,7 @@ const ChatBubble: FC<Props> = ({ content, side }) => {
     case 'right':
       return (
         <div className='chat chat-end'>
-          <div className='chat-bubble chat-bubble-primary'>
+          <div className='chat-bubble chat-bubble-info break-all'>
             {textToShow.split('').map((c, i) => (
               <span
                 key={i}
