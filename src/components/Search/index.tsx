@@ -76,7 +76,15 @@ const Search: FC<Props> = ({ articles }) => {
           </button>
         </form>
       </div>
-      {searched ? <Article articles={results} /> : <></>}
+      {searched ? (
+        results.length !== 0 ? (
+          <Article articles={results} />
+        ) : (
+          <div>検索結果がありませんでした。</div>
+        )
+      ) : (
+        <></>
+      )}
     </div>
   )
 }
