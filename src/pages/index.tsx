@@ -18,8 +18,12 @@ function App() {
   })
 
   return (
-    <div className='h-full w-full bg-black' style={{ cursor: 'grab' }}>
-      <Scene />
+    <div className='container mx-auto flex-1 overflow-y-auto p-5'>
+      <div className='h-full bg-base-200 p-5'>
+        <div className='h-full w-full bg-black' style={{ cursor: 'grab' }}>
+          <Scene />
+        </div>
+      </div>
     </div>
   )
 }

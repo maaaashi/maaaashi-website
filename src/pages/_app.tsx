@@ -14,11 +14,8 @@ export default function App({ Component, pageProps }: AppProps) {
       <div className='sticky top-0 z-50'>
         <Header />
       </div>
-      <div className='container mx-auto flex-1 overflow-y-auto p-5'>
-        <div className='h-full overflow-y-auto bg-base-200 p-5'>
-          <Component {...pageProps} />
-        </div>
-      </div>
+
+      <Component {...pageProps} />
     </div>
   )
 }

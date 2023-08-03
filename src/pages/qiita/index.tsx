@@ -219,72 +219,74 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
   }
 
   return (
-    <>
-      <div className='flex flex-1 items-center justify-between md:p-4'>
-        <button
-          className='btn-outline btn'
-          onClick={() => {
-            setYear(year - 1)
-            setPage(1)
-          }}
-        >
-          <MdNavigateBefore />
-          {year - 1}年
-        </button>
-        <h2 className='text-2xl font-bold'>{year}年</h2>
-        <button
-          className='btn'
-          onClick={() => {
-            setYear(year + 1)
-            setPage(1)
-          }}
-        >
-          {year + 1}年
-          <MdNavigateNext />
-        </button>
-      </div>
-      <div className='divider'></div>
+    <div className='container mx-auto flex-1 overflow-y-auto p-5'>
+      <div className='h-full bg-base-200 p-5'>
+        <div className='flex flex-1 items-center justify-between md:p-4'>
+          <button
+            className='btn-outline btn'
+            onClick={() => {
+              setYear(year - 1)
+              setPage(1)
+            }}
+          >
+            <MdNavigateBefore />
+            {year - 1}年
+          </button>
+          <h2 className='text-2xl font-bold'>{year}年</h2>
+          <button
+            className='btn'
+            onClick={() => {
+              setYear(year + 1)
+              setPage(1)
+            }}
+          >
+            {year + 1}年
+            <MdNavigateNext />
+          </button>
+        </div>
+        <div className='divider'></div>
 
-      <div className='overflow-y-auto py-5'>
-        {filterArticles(articlesDataSouce).length === 0 ? (
-          <div>投稿がありません。</div>
-        ) : (
-          <div>
-            <h3 className='text-lg font-bold'>Article List</h3>
-            <Article
-              articles={filterArticles(articlesDataSouce).slice(
-                (page - 1) * 10,
-                page * 10
-              )}
-            />
-            {pagenation()}
-            <div className='divider'></div>
-            <Search articles={filterArticles(articlesDataSouce)}></Search>
-            <div className='divider'></div>
-            <h3 className='text-lg font-bold'>Awards</h3>
-            <div className='flex flex-wrap justify-evenly gap-10 p-4'>
-              <Awards
-                title='今年最も閲覧された記事'
-                article={topView()}
-                description={`${topView().page_views_count} views`}
+        <div className='overflow-y-auto py-5'>
+          {filterArticles(articlesDataSouce).length === 0 ? (
+            <div>投稿がありません。</div>
+          ) : (
+            <div>
+              <h3 className='text-lg font-bold'>Article List</h3>
+              <Article
+                articles={filterArticles(articlesDataSouce).slice(
+                  (page - 1) * 10,
+                  page * 10
+                )}
               />
-              <Awards
-                title='今年最もいいねされた記事'
-                article={topLikes()}
-                description={`${topView().likes_count} いいね`}
-              />
-              <Awards
-                title='今年最もストックされた記事'
-                article={topStock()}
-                description={`${topView().stocks_count} ストック`}
-              />
+              {pagenation()}
+              <div className='divider'></div>
+              <Search articles={filterArticles(articlesDataSouce)}></Search>
+              <div className='divider'></div>
+              <h3 className='text-lg font-bold'>Awards</h3>
+              <div className='flex flex-wrap justify-evenly gap-10 p-4'>
+                <Awards
+                  title='今年最も閲覧された記事'
+                  article={topView()}
+                  description={`${topView().page_views_count} views`}
+                />
+                <Awards
+                  title='今年最もいいねされた記事'
+                  article={topLikes()}
+                  description={`${topView().likes_count} いいね`}
+                />
+                <Awards
+                  title='今年最もストックされた記事'
+                  article={topStock()}
+                  description={`${topView().stocks_count} ストック`}
+                />
+              </div>
+              <div className='divider'></div>
+              <Chart articles={filterArticles(articlesDataSouce)} />
             </div>
-            <div className='divider'></div>
-            <Chart articles={filterArticles(articlesDataSouce)} />
-          </div>
-        )}
+          )}
+        </div>
       </div>
-    </>
+    </div>
   )
 }
 
