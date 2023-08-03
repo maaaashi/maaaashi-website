@@ -219,8 +219,8 @@ const Qiita: FC<Props> = ({ articles: originalArticles }) => {
   }
 
   return (
-    <div className='container mx-auto flex-1 overflow-y-auto p-5'>
-      <div className='h-full bg-base-200 p-5'>
+    <div className='container mx-auto flex-1 overflow-y-auto bg-base-200 p-5'>
+      <div className='h-full p-5'>
         <div className='flex flex-1 items-center justify-between md:p-4'>
           <button
             className='btn-outline btn'

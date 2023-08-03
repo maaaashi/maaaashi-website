@@ -65,8 +65,8 @@ const AboutMe = () => {
   }
 
   return (
-    <div className='container mx-auto flex-1 overflow-y-auto p-5'>
-      <div className='h-full bg-base-200 p-5'>
+    <div className='container mx-auto flex-1 overflow-y-auto bg-base-200 p-5'>
+      <div className='h-full p-5'>
         <h2 className='mb-5 text-2xl font-bold'>About ME</h2>
         {/* <div style={{ height: '20000px' }}> */}
         <div className='h-fit'>
