@@ -25,8 +25,8 @@ jobs:
       - name: Install Node Dependencies
         run: npm install
 
-      - name: Build package
-        run: npm run build
+      # - name: Build package
+      #   run: npm run build
 
       - name: Build storybook
         run: npm run build-storybook
