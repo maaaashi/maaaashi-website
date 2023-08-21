@@ -3,6 +3,7 @@ import { AiFillGithub } from 'react-icons/ai'
 import { SiQiita } from 'react-icons/si'
 import open from './opinionAi.png'
 import website from './website.png'
+import dvfs from './DrawVariousFigures.png'
 import stt from './stt.png'
 import Image from 'next/image'
 
@@ -10,7 +11,7 @@ interface Props {
   title: string
   href: string
   description: string
-  image: 'open' | 'website' | 'stt'
+  image: 'open' | 'website' | 'stt' | 'dvfs'
   side: 'left' | 'right'
   qiita?: string
   github?: string
@@ -20,6 +21,7 @@ const images = {
   open,
   website,
   stt,
+  dvfs,
 }
 
 const MiniProject: FC<Props> = ({

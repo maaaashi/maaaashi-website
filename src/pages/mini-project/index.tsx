@@ -35,6 +35,15 @@ const Project = () => {
             href='https://speech-to-translate.vercel.app/'
             github='https://github.com/maaaashi/speech_to_translate'
           />
+
+          <MiniProject
+            title='DrawVariousFigures'
+            description='様々な図形をChart.jsを利用して描画するアプリ'
+            image='dvfs'
+            side='right'
+            href='https://draw-various-figures.mss-rep.com/'
+            github='https://github.com/maaaashi/draw-various-figures'
+          />
         </div>
         <div className='block md:hidden'>
           <MiniProject
@@ -63,6 +72,15 @@ const Project = () => {
             side='right'
             href='https://speech-to-translate.vercel.app/'
             github='https://github.com/maaaashi/speech_to_translate'
+          />
+
+          <MiniProject
+            title='DrawVariousFigures'
+            description='様々な図形をChart.jsを利用して描画するアプリ'
+            image='dvfs'
+            side='right'
+            href='https://draw-various-figures.mss-rep.com/'
+            github='https://github.com/maaaashi/draw-various-figures'
           />
         </div>
       </div>
