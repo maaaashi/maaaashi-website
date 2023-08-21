@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import Page from './index'
+import Page from '../pages/mini-project/index'
 
 const meta = {
   component: Page,

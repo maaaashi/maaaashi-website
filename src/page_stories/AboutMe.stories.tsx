@@ -1,13 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import Page from './index'
+import Page from '../pages/about-me/index'
 
-const meta = {
+const meta: Meta<typeof Page> = {
   component: Page,
-  parameters: {
-    layout: 'fullscreen',
-  },
-} satisfies Meta<typeof Page>
+}
 
 export default meta
 type Story = StoryObj<typeof meta>

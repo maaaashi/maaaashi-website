@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import Page from './index'
+import Page from '../pages/qiita/index'
 import { mockData } from '@/libs/mockdata'
 
 const meta = {
