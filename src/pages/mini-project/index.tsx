@@ -44,6 +44,15 @@ const Project = () => {
             href='https://draw-various-figures.mss-rep.com/'
             github='https://github.com/maaaashi/draw-various-figures'
           />
+
+          <MiniProject
+            title='WIP: ChatGPT Reversi'
+            description='ChatGPTとリバーシ'
+            image='reversi'
+            side='left'
+            href='https://chatgpt-reversi.mss-rep.com/'
+            github='https://github.com/maaaashi/ReversiWithChatGPT'
+          />
         </div>
         <div className='block md:hidden'>
           <MiniProject
@@ -81,6 +90,15 @@ const Project = () => {
             side='right'
             href='https://draw-various-figures.mss-rep.com/'
             github='https://github.com/maaaashi/draw-various-figures'
+          />
+
+          <MiniProject
+            title='WIP: ChatGPT Reversi'
+            description='ChatGPTとリバーシ'
+            image='reversi'
+            side='right'
+            href='https://chatgpt-reversi.mss-rep.com/'
+            github='https://github.com/maaaashi/ReversiWithChatGPT'
           />
         </div>
       </div>
