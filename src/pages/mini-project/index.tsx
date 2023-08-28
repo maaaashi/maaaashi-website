@@ -46,7 +46,7 @@ const Project = () => {
           />
 
           <MiniProject
-            title='WIP: ChatGPT Reversi'
+            title='ChatGPT Reversi'
             description='ChatGPTとリバーシ'
             image='reversi'
             side='left'
@@ -93,7 +93,7 @@ const Project = () => {
           />
 
           <MiniProject
-            title='WIP: ChatGPT Reversi'
+            title='ChatGPT Reversi'
             description='ChatGPTとリバーシ'
             image='reversi'
             side='right'
