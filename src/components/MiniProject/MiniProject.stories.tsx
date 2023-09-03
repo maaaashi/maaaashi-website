@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import MiniProject from './index'
+import { ProjectType } from '@/pages/mini-project'
 
 const meta: Meta<typeof MiniProject> = {
   component: MiniProject,
@@ -8,38 +9,18 @@ const meta: Meta<typeof MiniProject> = {
 export default meta
 type Story = StoryObj<typeof MiniProject>
 
-export const OpinionAI: Story = {
-  args: {
-    title: 'test title',
-    href: 'https://www.google.com',
-    description: 'test description',
-    qiita: 'https://qiita.com',
-    image: 'open',
-    github: 'https://github.com',
-    side: 'left',
-  },
+const project: ProjectType = {
+  title: 'test title',
+  href: 'https://www.google.com',
+  description: 'test description',
+  qiita: 'https://qiita.com',
+  image: 'open',
+  github: 'https://github.com',
 }
 
-export const MaaaashiWebSite: Story = {
+export const View: Story = {
   args: {
-    title: 'test title',
-    href: 'https://www.google.com',
-    description: 'test description',
-    qiita: 'https://qiita.com',
-    image: 'website',
-    github: 'https://github.com',
-    side: 'left',
-  },
-}
-
-export const STT: Story = {
-  args: {
-    title: 'test title',
-    href: 'https://www.google.com',
-    description: 'test description',
-    qiita: 'https://qiita.com',
-    image: 'stt',
-    github: 'https://github.com',
-    side: 'left',
+    project,
+    number: 1,
   },
 }
