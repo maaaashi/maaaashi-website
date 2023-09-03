@@ -6,17 +6,13 @@ import website from './website.png'
 import dvfs from './DrawVariousFigures.png'
 import stt from './stt.png'
 import reversi from './ChatGPTReversi.png'
-import image from './ImageGenerator.png'
+import imageGenerator from './ImageGenerator.png'
 import Image from 'next/image'
+import { ProjectType } from '@/pages/mini-project'
 
 interface Props {
-  title: string
-  href: string
-  description: string
-  image: 'open' | 'website' | 'stt' | 'dvfs' | 'reversi' | 'image'
-  side: 'left' | 'right'
-  qiita?: string
-  github?: string
+  project: ProjectType
+  number: number
 }
 
 const images = {
@@ -25,65 +21,36 @@ const images = {
   stt,
   dvfs,
   reversi,
-  image,
+  imageGenerator,
 }
 
-const MiniProject: FC<Props> = ({
-  title,
-  href,
-  description,
-  qiita,
-  image,
-  github,
-  side,
-}) => {
-  if (side === 'left') {
-    return (
-      <div className='flex flex-wrap items-center justify-start gap-5 p-5'>
-        <a
-          href={href}
-          target='_blank'
-          className='max-w-sm rounded-2xl border hover:brightness-90'
-        >
-          <Image
-            src={images[image]}
-            alt={title}
-            className='h-auto rounded-lg shadow-lg shadow-black/30 transition-shadow'
-          />
-        </a>
-        <div className='w-full max-w-[14rem] text-center'>
-          <h3>{title}</h3>
-          <p>{description}</p>
+const MiniProject: FC<Props> = ({ project, number }) => {
+  const { title, href, description, qiita, image, github } = project
 
-          <div className='flex justify-evenly rounded-lg bg-base-300 p-5 shadow-lg shadow-black/30 transition-shadow'>
-            <a target='_blank' href={github} className='hover:brightness-110'>
-              <AiFillGithub size={40} />
-            </a>
-            {qiita ? (
-              <a
-                target='_blank'
-                href={qiita}
-                className='h-fit w-fit hover:brightness-90'
-              >
-                <SiQiita
-                  size={40}
-                  color='white'
-                  style={{ backgroundColor: '#00c600' }}
-                />
-              </a>
-            ) : (
-              <></>
-            )}
-          </div>
-        </div>
-      </div>
-    )
+  const boxClass = () => {
+    let classname =
+      'flex flex-wrap items-center justify-center md:justify-start gap-5 p-5'
+    if (number % 2 === 0) {
+      return classname
+    }
+    return classname + ' md:flex-row-reverse'
   }
 
   return (
-    <div className='ml-auto flex flex-wrap items-center justify-end gap-5 p-5'>
+    <div className={boxClass()}>
+      <a
+        href={href}
+        target='_blank'
+        className='max-w-sm rounded-2xl border hover:brightness-90'
+      >
+        <Image
+          src={images[image]}
+          alt={title}
+          className='h-auto rounded-lg shadow-lg shadow-black/30 transition-shadow'
+        />
+      </a>
       <div className='w-full max-w-[14rem] text-center'>
-        <h3>{title}</h3>
+        <h3 className='text-lg font-bold'>{title}</h3>
         <p>{description}</p>
 
         <div className='flex justify-evenly rounded-lg bg-base-300 p-5 shadow-lg shadow-black/30 transition-shadow'>
@@ -107,19 +74,49 @@ const MiniProject: FC<Props> = ({
           )}
         </div>
       </div>
-      <a
-        href={href}
-        target='_blank'
-        className='max-w-sm rounded-2xl border hover:brightness-90'
-      >
-        <Image
-          src={images[image]}
-          alt={title}
-          className='h-auto rounded-lg shadow-lg shadow-black/30 transition-shadow'
-        />
-      </a>
     </div>
   )
+
+  // return (
+  //   <div className='ml-auto flex flex-wrap items-center justify-end gap-5 p-5'>
+  //     <div className='w-full max-w-[14rem] text-center'>
+  //       <h3>{title}</h3>
+  //       <p>{description}</p>
+
+  //       <div className='flex justify-evenly rounded-lg bg-base-300 p-5 shadow-lg shadow-black/30 transition-shadow'>
+  //         <a target='_blank' href={github} className='hover:brightness-110'>
+  //           <AiFillGithub size={40} />
+  //         </a>
+  //         {qiita ? (
+  //           <a
+  //             target='_blank'
+  //             href={qiita}
+  //             className='h-fit w-fit hover:brightness-90'
+  //           >
+  //             <SiQiita
+  //               size={40}
+  //               color='white'
+  //               style={{ backgroundColor: '#00c600' }}
+  //             />
+  //           </a>
+  //         ) : (
+  //           <></>
+  //         )}
+  //       </div>
+  //     </div>
+  //     <a
+  //       href={href}
+  //       target='_blank'
+  //       className='max-w-sm rounded-2xl border hover:brightness-90'
+  //     >
+  //       <Image
+  //         src={images[image]}
+  //         alt={title}
+  //         className='h-auto rounded-lg shadow-lg shadow-black/30 transition-shadow'
+  //       />
+  //     </a>
+  //   </div>
+  // )
 }
 
 export default MiniProject
