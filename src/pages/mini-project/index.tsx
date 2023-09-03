@@ -53,6 +53,15 @@ const Project = () => {
             href='https://chatgpt-reversi.mss-rep.com/'
             github='https://github.com/maaaashi/ReversiWithChatGPT'
           />
+
+          <MiniProject
+            title="Maaaashi's Image Generator"
+            description='プロンプトから画像生成'
+            image='image'
+            side='right'
+            href='https://image-generator.mss-rep.com/'
+            github='https://github.com/maaaashi/image-generator'
+          />
         </div>
         <div className='block md:hidden'>
           <MiniProject
@@ -99,6 +108,15 @@ const Project = () => {
             side='right'
             href='https://chatgpt-reversi.mss-rep.com/'
             github='https://github.com/maaaashi/ReversiWithChatGPT'
+          />
+
+          <MiniProject
+            title="Maaaashi's Image Generator"
+            description='プロンプトから画像生成'
+            image='image'
+            side='right'
+            href='https://image-generator.mss-rep.com/'
+            github='https://github.com/maaaashi/image-generator'
           />
         </div>
       </div>

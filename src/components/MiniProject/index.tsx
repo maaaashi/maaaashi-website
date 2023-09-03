@@ -6,13 +6,14 @@ import website from './website.png'
 import dvfs from './DrawVariousFigures.png'
 import stt from './stt.png'
 import reversi from './ChatGPTReversi.png'
+import image from './ImageGenerator.png'
 import Image from 'next/image'
 
 interface Props {
   title: string
   href: string
   description: string
-  image: 'open' | 'website' | 'stt' | 'dvfs' | 'reversi'
+  image: 'open' | 'website' | 'stt' | 'dvfs' | 'reversi' | 'image'
   side: 'left' | 'right'
   qiita?: string
   github?: string
@@ -24,6 +25,7 @@ const images = {
   stt,
   dvfs,
   reversi,
+  image,
 }
 
 const MiniProject: FC<Props> = ({
