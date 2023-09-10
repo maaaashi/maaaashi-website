@@ -47,6 +47,7 @@ const Project = () => {
       image: 'reversi',
       href: 'https://chatgpt-reversi.mss-rep.com/',
       github: 'https://github.com/maaaashi/ReversiWithChatGPT',
+      qiita: 'https://qiita.com/maaaashi/items/50d9976407abed742031',
     },
     {
       title: "Maaaashi's Image Generator",
