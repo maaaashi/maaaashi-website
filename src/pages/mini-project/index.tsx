@@ -3,7 +3,14 @@ import MiniProject from '@/components/MiniProject'
 export type ProjectType = {
   title: string
   description: string
-  image: 'open' | 'website' | 'stt' | 'dvfs' | 'reversi' | 'imageGenerator'
+  image:
+    | 'open'
+    | 'website'
+    | 'stt'
+    | 'dvfs'
+    | 'reversi'
+    | 'imageGenerator'
+    | 'cookingAssistant'
   href: string
   qiita?: string
   github?: string
@@ -55,6 +62,13 @@ const Project = () => {
       image: 'imageGenerator',
       href: 'https://image-generator.mss-rep.com/',
       github: 'https://github.com/maaaashi/image-generator',
+    },
+    {
+      title: "Maaaashi's ChatGPT Cooking Assistant",
+      description: 'ChatGPTが料理のレシピを生成',
+      image: 'cookingAssistant',
+      href: 'https://chatgpt-cooking-assistant.vercel.app/',
+      github: 'https://github.com/maaaashi/chatgpt-cooking-assistant',
     },
   ]
   return (

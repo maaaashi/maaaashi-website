@@ -9,6 +9,7 @@ import reversi from './ChatGPTReversi.png'
 import imageGenerator from './ImageGenerator.png'
 import Image from 'next/image'
 import { ProjectType } from '@/pages/mini-project'
+import cookingAssistant from './cookingAssistant.png'
 
 interface Props {
   project: ProjectType
@@ -22,6 +23,7 @@ const images = {
   dvfs,
   reversi,
   imageGenerator,
+  cookingAssistant,
 }
 
 const MiniProject: FC<Props> = ({ project, number }) => {
