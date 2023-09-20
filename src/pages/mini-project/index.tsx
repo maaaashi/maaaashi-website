@@ -67,7 +67,7 @@ const Project = () => {
       title: "Maaaashi's ChatGPT Cooking Assistant",
       description: 'ChatGPTが料理のレシピを生成',
       image: 'cookingAssistant',
-      href: 'https://chatgpt-cooking-assistant.vercel.app/',
+      href: 'https://chatgpt-cooking-assistant.mss-rep.com',
       github: 'https://github.com/maaaashi/chatgpt-cooking-assistant',
     },
   ]
