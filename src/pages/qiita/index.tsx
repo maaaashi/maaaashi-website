@@ -324,6 +324,7 @@ export const getStaticProps: GetStaticProps = async () => {
           tags: article.tags,
           title: article.title,
           url: article.url,
+          private: article.private,
           page_views_count: article.page_views_count,
         }
       }),
