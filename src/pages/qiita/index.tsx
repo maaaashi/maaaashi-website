@@ -19,6 +19,7 @@ export interface QiitaResponse {
   tags: { name: string; versions: any[] }[]
   title: string
   url: string
+  private: boolean
   page_views_count: number
 }
 
@@ -33,6 +34,7 @@ export interface QiitaConvertResponse {
   tags: { name: string; versions: any[] }[]
   title: string
   url: string
+  private: boolean
   page_views_count: number
 }
 
@@ -41,12 +43,14 @@ type Props = {
 }
 
 const convertArticles = (articles: QiitaResponse[]): QiitaConvertResponse[] => {
-  return articles.map((article) => {
-    return {
-      ...article,
-      created_at: new Date(article.created_at),
-    }
-  })
+  return articles
+    .filter((article) => article.private === false)
+    .map((article) => {
+      return {
+        ...article,
+        created_at: new Date(article.created_at),
+      }
+    })
 }
 
 const sortCreatedAt = (
