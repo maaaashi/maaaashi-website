@@ -65,7 +65,7 @@ const index = () => {
     ),
   ]
   return (
-    <div className='container mx-auto flex flex-wrap gap-2'>
+    <div className='container mx-auto flex h-full flex-wrap gap-2 overflow-auto'>
       {catalogs.map((catalog, index) => (
         <CatalogCard catalog={catalog} key={index} />
       ))}
