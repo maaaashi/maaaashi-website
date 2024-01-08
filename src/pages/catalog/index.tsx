@@ -16,6 +16,7 @@ const index = () => {
       '設定から、感想文を自動生成するツール',
       'https://opinion-ai.vercel.app/',
       open,
+      4,
       'https://github.com/maaaashi/opinion-ai',
       'https://qiita.com/maaaashi/items/cbc06263c51ab64e5dbe'
     ),
@@ -24,6 +25,7 @@ const index = () => {
       '自分のプロフィールや投稿記事を紹介するサイト(This Site)',
       'https://maaaashi-website.mss-rep.com',
       website,
+      1,
       'https://github.com/maaaashi/maaaashi-website'
     ),
     new Catalog(
@@ -31,6 +33,7 @@ const index = () => {
       'AzureSTTを利用し、音声からテキスト変換し、DeepL翻訳をするアプリ',
       'https://speech-to-translate.vercel.app/',
       stt,
+      5,
       'https://github.com/maaaashi/speech_to_translate'
     ),
     new Catalog(
@@ -38,6 +41,7 @@ const index = () => {
       '様々な図形をChart.jsを利用して描画するアプリ',
       'https://draw-various-figures.mss-rep.com/',
       dvfs,
+      6,
       'https://github.com/maaaashi/draw-various-figures'
     ),
     new Catalog(
@@ -45,6 +49,7 @@ const index = () => {
       'ChatGPTとリバーシ',
       'https://chatgpt-reversi.mss-rep.com/',
       reversi,
+      3,
       'https://github.com/maaaashi/ReversiWithChatGPT',
       'https://qiita.com/maaaashi/items/50d9976407abed742031'
     ),
@@ -53,6 +58,7 @@ const index = () => {
       'プロンプトから画像生成',
       'https://image-generator.mss-rep.com/',
       imageGenerator,
+      7,
       'https://github.com/maaaashi/image-generator'
     ),
     new Catalog(
@@ -60,15 +66,18 @@ const index = () => {
       'ChatGPTが料理のレシピとイメージ画像を生成',
       'https://cooking-assistant.mss-rep.com/',
       cookingAssistant,
+      2,
       'https://github.com/maaaashi/cooking-assistant',
       'https://qiita.com/maaaashi/items/43210e781f657777fe56'
     ),
   ]
   return (
     <div className='container mx-auto flex h-full flex-wrap gap-2 overflow-auto py-6'>
-      {catalogs.map((catalog, index) => (
-        <CatalogCard catalog={catalog} key={index} />
-      ))}
+      {catalogs
+        .sort((a, b) => a.priority - b.priority)
+        .map((catalog, index) => (
+          <CatalogCard catalog={catalog} key={index} />
+        ))}
     </div>
   )
 }

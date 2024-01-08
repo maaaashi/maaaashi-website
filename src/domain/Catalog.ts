@@ -6,6 +6,7 @@ export class Catalog {
     public description: string,
     public link: string,
     public image: StaticImageData,
+    public priority: number,
     public github?: string,
     public qiita?: string
   ) {}
