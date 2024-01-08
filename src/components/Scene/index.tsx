@@ -74,7 +74,7 @@ function Scene() {
     project: {
       position: position.project,
       rotation: 2,
-      link: 'mini-project',
+      link: 'catalog',
       size: size.project,
       boxColor: {
         normal: 'white',
