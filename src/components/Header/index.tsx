@@ -88,8 +88,8 @@ const Header: FC = () => {
     { href: '/about-me', value: 'About me', icon: <SiAboutdotme size={20} /> },
     { href: '/qiita', value: 'Qiita', icon: <MdOutlineArticle size={20} /> },
     {
-      href: '/mini-project',
-      value: 'Mini Project',
+      href: '/catalog',
+      value: 'SITE CATALOG',
       icon: <GoProjectSymlink size={20} />,
     },
   ]
