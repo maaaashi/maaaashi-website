@@ -5,7 +5,7 @@ import open from './images/opinionAi.png'
 import website from './images/website.png'
 import dvfs from './images/DrawVariousFigures.png'
 import stt from './images/stt.png'
-import reversi from './images/website.png'
+import reversi from './images/ChatGPTReversi.png'
 import imageGenerator from './images/ImageGenerator.png'
 import cookingAssistant from './images/cookingAssistant.png'
 
